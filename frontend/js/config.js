@@ -11,7 +11,7 @@
  * Frontend served BY the backend itself (see the optional static mount
  * in backend/app/main.py): set this to "" (relative/same-origin) instead.
  */
-window.MANAKAI_API_BASE = window.MANAKAI_API_BASE || "http://localhost:8000";
+window.MANAKAI_API_BASE = window.MANAKAI_API_BASE || "";
 
 /**
  * Small fetch helper shared by every page-specific script.
