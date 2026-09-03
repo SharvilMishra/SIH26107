@@ -1,0 +1,374 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Verification History - ManakAI</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-container": "#8690ee",
+                        "outline": "#767683",
+                        "secondary": "#2b5bb5",
+                        "on-secondary-fixed-variant": "#00429c",
+                        "alert-red": "#C62828",
+                        "on-primary-fixed": "#000767",
+                        "tertiary-container": "#003909",
+                        "inverse-surface": "#2e3132",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#4c56af",
+                        "tertiary": "#002103",
+                        "error": "#ba1a1a",
+                        "primary-container": "#1a237e",
+                        "on-secondary-container": "#00337c",
+                        "on-secondary-fixed": "#001945",
+                        "on-tertiary-container": "#5aa958",
+                        "bis-gold": "#B8860B",
+                        "surface-variant": "#e1e3e4",
+                        "on-tertiary-fixed": "#002204",
+                        "surface-container-high": "#e7e8e9",
+                        "tertiary-fixed": "#a3f69c",
+                        "on-background": "#191c1d",
+                        "on-primary-fixed-variant": "#343d96",
+                        "text-primary": "#121212",
+                        "on-secondary": "#ffffff",
+                        "outline-variant": "#c6c5d4",
+                        "inverse-on-surface": "#f0f1f2",
+                        "surface-container-low": "#f3f4f5",
+                        "primary-fixed-dim": "#bdc2ff",
+                        "background": "#f8f9fa",
+                        "text-secondary": "#424242",
+                        "border-subtle": "#E0E0E0",
+                        "on-surface": "#191c1d",
+                        "surface": "#f8f9fa",
+                        "secondary-fixed-dim": "#b0c6ff",
+                        "primary-fixed": "#e0e0ff",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#bdc2ff",
+                        "primary": "#000666",
+                        "on-tertiary-fixed-variant": "#005312",
+                        "tertiary-fixed-dim": "#88d982",
+                        "surface-container": "#edeeef",
+                        "secondary-fixed": "#d9e2ff",
+                        "surface-bright": "#f8f9fa",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-dim": "#d9dadb",
+                        "on-tertiary": "#ffffff",
+                        "success-green": "#2E7D32",
+                        "on-surface-variant": "#454652",
+                        "secondary-container": "#759efd",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "gutter": "16px",
+                        "unit": "4px",
+                        "margin-desktop": "48px",
+                        "touch-target": "48px",
+                        "max-width-content": "1200px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "code-sm": ["monospace"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "code-sm": ["13px", { "lineHeight": "18px", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: theme('colors.background'); color: theme('colors.text-primary'); }
+        /* Custom scrollbar for a cleaner look */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: theme('colors.surface'); }
+        ::-webkit-scrollbar-thumb { background: theme('colors.outline-variant'); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: theme('colors.outline'); }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav class="bg-surface docked full-width top-0 border-b border-outline-variant flat no shadows">
+<div class="flex justify-between items-center w-full px-margin-desktop max-w-max-width-content mx-auto h-touch-target">
+<!-- Brand -->
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span class="text-headline-md font-headline-md font-bold text-primary">ManakAI</span>
+</div>
+<!-- Navigation Links (Web) -->
+<div class="hidden md:flex items-center gap-6">
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-secondary transition-colors cursor-pointer active:scale-95 transition-transform" href="#">Home</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-secondary transition-colors cursor-pointer active:scale-95 transition-transform" href="#">Ask AI</a>
+<a class="text-primary font-body-md text-body-md font-bold border-b-2 border-primary pb-1 cursor-pointer active:scale-95 transition-transform" href="#">Verify</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-secondary transition-colors cursor-pointer active:scale-95 transition-transform" href="#">Standards</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-secondary transition-colors cursor-pointer active:scale-95 transition-transform" href="#">Complaints</a>
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-4">
+<button class="font-label-md text-label-md text-primary hover:text-secondary transition-colors cursor-pointer active:scale-95 transition-transform hidden sm:block">Language</button>
+<button class="font-label-md text-label-md text-primary hover:text-secondary transition-colors cursor-pointer active:scale-95 transition-transform hidden sm:block">Switch Mode</button>
+<button class="md:hidden text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow w-full px-margin-mobile md:px-margin-desktop py-8 max-w-max-width-content mx-auto">
+<!-- Page Header -->
+<div class="mb-8 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+<div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-surface mb-2">Verification History</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Review your past HUID and ISI mark scan results and download official verification reports.</p>
+</div>
+<button class="flex items-center justify-center gap-2 bg-primary text-on-primary font-label-md text-label-md px-6 py-0 h-touch-target rounded-DEFAULT hover:bg-primary-fixed-variant transition-colors w-full md:w-auto">
+<span class="material-symbols-outlined">qr_code_scanner</span>
+                New Scan
+            </button>
+</div>
+<!-- Search & Filter Controls -->
+<div class="bg-surface-container-lowest border border-border-subtle rounded-xl p-4 mb-8 flex flex-col md:flex-row gap-4 items-center shadow-[0px_4px_12px_rgba(0,0,0,0.02)]">
+<div class="relative flex-grow w-full">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-12 pr-4 h-touch-target bg-surface border border-border-subtle rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-all" placeholder="Search by HUID, ISI number, or product name..." type="text">
+</div>
+<div class="flex w-full md:w-auto gap-4">
+<div class="relative w-full md:w-48">
+<select class="w-full appearance-none pl-4 pr-10 h-touch-target bg-surface border border-border-subtle rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary cursor-pointer">
+<option value="">All Types</option>
+<option value="huid">HUID (Jewellery)</option>
+<option value="isi">ISI Mark (Products)</option>
+<option value="crs">CRS (Electronics)</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none">expand_more</span>
+</div>
+<div class="relative w-full md:w-48">
+<select class="w-full appearance-none pl-4 pr-10 h-touch-target bg-surface border border-border-subtle rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary cursor-pointer">
+<option value="">Last 30 Days</option>
+<option value="3m">Last 3 Months</option>
+<option value="6m">Last 6 Months</option>
+<option value="all">All Time</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none">calendar_month</span>
+</div>
+</div>
+</div>
+<!-- History Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Evidence Card: Authentic (HUID) -->
+<div class="bg-surface-container-lowest border border-border-subtle rounded-xl overflow-hidden flex flex-col group hover:shadow-[0px_4px_12px_rgba(0,0,0,0.05)] transition-shadow">
+<div class="p-5 border-b border-border-subtle bg-surface-bright flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline" style="font-variation-settings: 'FILL' 1;">diamond</span>
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">HUID Scan</span>
+</div>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#E8F5E9] border border-[#A5D6A7]">
+<span class="material-symbols-outlined text-[16px] text-success-green" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-md text-label-md text-success-green">Authentic</span>
+</div>
+</div>
+<div class="p-5 flex-grow flex gap-4">
+<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 border border-border-subtle">
+<img class="w-full h-full object-cover" data-alt="A macro photograph of a gold bangle showing a tiny, laser-engraved HUID code on the inner surface. The lighting is bright, sterile white to emphasize the precision of the engraving against the warm gold. The background is a pure, minimalist neutral gray, creating a highly professional, evidence-style aesthetic suitable for a regulatory platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6zMT0t60Ff8g1ICz8a1Xwcmdp4OS9bPy9si4i2cM4PrBu1iO_5wNpGQv2ecvdpOgSrgrMXxs92q-7ZA3eppY1kj4jAogYFkX2ETpWdKO9sGTIRFmhzq-SM-2qLPBntDTdCvngRcwu-fmCq0r1ZWu4fRa8ik1g2vBONYBF8tbYSZr12oBMN_abXzhbt2TFSn94wYJyACtF3mdv2sYfv9vVtoverqvasdqegbXd8IQCK048zgHBfJKl">
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1 text-lg">22K Gold Bangle</h3>
+<p class="font-code-sm text-code-sm text-outline mb-2 tracking-wider">HUID: A7B8-9C2D-E4F5</p>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm line-clamp-2">Assayed by: Metro Gold Testing Centre, Mumbai</p>
+</div>
+</div>
+<div class="p-4 bg-surface flex justify-between items-center mt-auto border-t border-border-subtle">
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span class="font-body-md text-body-md text-sm">Oct 24, 2024 • 14:32</span>
+</div>
+<button class="p-2 text-primary hover:bg-primary-fixed rounded-full transition-colors flex items-center justify-center" title="Download Verification Report">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+</div>
+<!-- Evidence Card: Authentic (ISI) -->
+<div class="bg-surface-container-lowest border border-border-subtle rounded-xl overflow-hidden flex flex-col group hover:shadow-[0px_4px_12px_rgba(0,0,0,0.05)] transition-shadow">
+<div class="p-5 border-b border-border-subtle bg-surface-bright flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline" style="font-variation-settings: 'FILL' 1;">water_drop</span>
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">ISI Mark</span>
+</div>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#E8F5E9] border border-[#A5D6A7]">
+<span class="material-symbols-outlined text-[16px] text-success-green" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-md text-label-md text-success-green">Authentic</span>
+</div>
+</div>
+<div class="p-5 flex-grow flex gap-4">
+<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 border border-border-subtle">
+<img class="w-full h-full object-cover" data-alt="A clean, high-resolution product shot of a packaged drinking water bottle focused specifically on the ISI mark printed on the blue plastic label. The setting is a brightly lit, sterile product studio environment with a pure white background. The focus is sharp on the certification mark to convey regulatory compliance and safety." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBv4kMg9-Lue-a2iAHbYYTt5IHg7gnB58-_mvFZTynpTw35lHcnEZO18gihochEEkvTehcZTBoFS-fHE8FAf5-MblcRJhZUTsmvK2m5yOLwT-lMdcnMG4Npa7csDngVA7Cz9qO-ULBnklmuqq8P7llRy2p7eWs40DfLJhYSsrZjTTO7cLluk4R81Ty0TomdxpGdRXZw-m8nB7WF4H4N8zQq1kOarjfMIhlG01SEaSmbEvKM7PQ01PhM">
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1 text-lg">Packaged Drinking Water</h3>
+<p class="font-code-sm text-code-sm text-outline mb-2 tracking-wider">CM/L: 1234567890</p>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm line-clamp-2">Standard: IS 14543:2016<br>Mfr: AquaPure Industries Ltd.</p>
+</div>
+</div>
+<div class="p-4 bg-surface flex justify-between items-center mt-auto border-t border-border-subtle">
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span class="font-body-md text-body-md text-sm">Oct 22, 2024 • 09:15</span>
+</div>
+<button class="p-2 text-primary hover:bg-primary-fixed rounded-full transition-colors flex items-center justify-center" title="Download Verification Report">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+</div>
+<!-- Evidence Card: Expired (ISI) -->
+<div class="bg-surface-container-lowest border border-border-subtle rounded-xl overflow-hidden flex flex-col group hover:shadow-[0px_4px_12px_rgba(0,0,0,0.05)] transition-shadow">
+<div class="p-5 border-b border-border-subtle bg-surface-bright flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline" style="font-variation-settings: 'FILL' 1;">kitchen</span>
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">ISI Mark</span>
+</div>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#FFF8E1] border border-[#FFE082]">
+<span class="material-symbols-outlined text-[16px] text-bis-gold" style="font-variation-settings: 'FILL' 1;">warning</span>
+<span class="font-label-md text-label-md text-bis-gold">Expired License</span>
+</div>
+</div>
+<div class="p-5 flex-grow flex gap-4">
+<div class="w-16 h-16 rounded-lg flex items-center justify-center bg-surface-container-high flex-shrink-0 border border-border-subtle">
+<span class="material-symbols-outlined text-3xl text-outline">image_not_supported</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1 text-lg">Electric Iron</h3>
+<p class="font-code-sm text-code-sm text-outline mb-2 tracking-wider">CM/L: 9876543210</p>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm line-clamp-2">Standard: IS 366:1991<br>Note: License expired on 31-Dec-2023.</p>
+</div>
+</div>
+<div class="p-4 bg-surface flex justify-between items-center mt-auto border-t border-border-subtle">
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span class="font-body-md text-body-md text-sm">Oct 18, 2024 • 16:45</span>
+</div>
+<button class="p-2 text-primary hover:bg-primary-fixed rounded-full transition-colors flex items-center justify-center" title="Download Verification Report">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+</div>
+<!-- Evidence Card: Not Found (HUID) -->
+<div class="bg-surface-container-lowest border border-border-subtle rounded-xl overflow-hidden flex flex-col group hover:shadow-[0px_4px_12px_rgba(0,0,0,0.05)] transition-shadow">
+<div class="p-5 border-b border-border-subtle bg-surface-bright flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline" style="font-variation-settings: 'FILL' 1;">diamond</span>
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">HUID Scan</span>
+</div>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#FFEBEE] border border-[#EF9A9A]">
+<span class="material-symbols-outlined text-[16px] text-error" style="font-variation-settings: 'FILL' 1;">error</span>
+<span class="font-label-md text-label-md text-error">Not Found</span>
+</div>
+</div>
+<div class="p-5 flex-grow flex gap-4">
+<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 border border-border-subtle">
+<img class="w-full h-full object-cover grayscale opacity-80" data-alt="A poorly lit, blurry photo of a generic gold ring where a hallmark is supposed to be, but is illegible. The background is a slightly messy retail countertop, suggesting an unofficial or unverified source. The lighting is dim and yellowed, contrasting with official evidence photos to emphasize the 'unverified' status." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDS2DbeuGP9z2U6QKpxJwhuSQ-2AAn_h2g4ZNszFrTRfWTMtLZan3I363jUCkmmQRQQ2Y3alsU_JWiHGep8jhSOeuudjfL48HVyvDkQ38NnevRBd7mqF2eW27lq4IR6FI5qy8dCelXx06iqhkcmO3cSnzpu-eqw395DWEHsFYxdUM0kfS1YUIqIYGH2szy0cuNPoWQZzz-HIIJEG4s9lrplCHhdJq8bfsD8hL4yUl35qr09zw1QNj_M">
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1 text-lg">Unknown Article</h3>
+<p class="font-code-sm text-code-sm text-outline mb-2 tracking-wider">HUID: X1Y2-Z3W4-V5U6</p>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm line-clamp-2">This code does not exist in the official BIS database. Proceed with caution.</p>
+</div>
+</div>
+<div class="p-4 bg-surface flex justify-between items-center mt-auto border-t border-border-subtle">
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span class="font-body-md text-body-md text-sm">Oct 15, 2024 • 11:10</span>
+</div>
+<button class="p-2 text-primary hover:bg-primary-fixed rounded-full transition-colors flex items-center justify-center" title="Download Incident Report">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+</div>
+<!-- Evidence Card: Authentic (CRS) -->
+<div class="bg-surface-container-lowest border border-border-subtle rounded-xl overflow-hidden flex flex-col group hover:shadow-[0px_4px_12px_rgba(0,0,0,0.05)] transition-shadow">
+<div class="p-5 border-b border-border-subtle bg-surface-bright flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline" style="font-variation-settings: 'FILL' 1;">memory</span>
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">CRS Scan</span>
+</div>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#E8F5E9] border border-[#A5D6A7]">
+<span class="material-symbols-outlined text-[16px] text-success-green" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-md text-label-md text-success-green">Authentic</span>
+</div>
+</div>
+<div class="p-5 flex-grow flex gap-4">
+<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 border border-border-subtle">
+<img class="w-full h-full object-cover" data-alt="A macro shot of a sleek, modern laptop power adapter focusing on the regulatory label printed on the bottom plastic casing. The label clearly shows the BIS Standard Mark for the Compulsory Registration Scheme (CRS) alongside technical specifications. The lighting is clinical, high-contrast, and top-down in a light-mode studio environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKHXWxL8LZ_F_N_Vjwz2YiLerBu6rATpDn5IcJsXeWfxE2laYE_DBH5jXJpBzBwoGC4QFC1iZ6bmU66EEMBT-GtJ126btt2PJ-6Y__4BYo2KmBJmpXVvd9RHMprWZBQhLL-1sy12ziayxjwLuSth7TEHI1Vihr6ggtCL10njHeGnz8S4XMPOfa19LA5y2W-ninNm8BevS3gZ8Mljwx13Sz_xSaJSE0mb8XdYMf3SWnlJpNj0ktYn81">
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1 text-lg">Power Adapter</h3>
+<p class="font-code-sm text-code-sm text-outline mb-2 tracking-wider">R-No: 41000000</p>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm line-clamp-2">Standard: IS 13252(Part 1):2010<br>Mfr: TechGlobal Electronics</p>
+</div>
+</div>
+<div class="p-4 bg-surface flex justify-between items-center mt-auto border-t border-border-subtle">
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span class="font-body-md text-body-md text-sm">Oct 10, 2024 • 10:05</span>
+</div>
+<button class="p-2 text-primary hover:bg-primary-fixed rounded-full transition-colors flex items-center justify-center" title="Download Verification Report">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Pagination (Simulated) -->
+<div class="mt-8 flex justify-center items-center gap-2">
+<button class="w-10 h-10 rounded-lg border border-border-subtle flex items-center justify-center text-outline hover:bg-surface-container-high transition-colors" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 rounded-lg bg-primary text-on-primary font-label-md text-label-md flex items-center justify-center">1</button>
+<button class="w-10 h-10 rounded-lg border border-border-subtle text-on-surface hover:bg-surface-container-high transition-colors font-label-md text-label-md flex items-center justify-center">2</button>
+<button class="w-10 h-10 rounded-lg border border-border-subtle text-on-surface hover:bg-surface-container-high transition-colors font-label-md text-label-md flex items-center justify-center">3</button>
+<button class="w-10 h-10 rounded-lg border border-border-subtle flex items-center justify-center text-on-surface hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-high full-width py-8 border-t border-outline-variant flat no shadows mt-auto">
+<div class="w-full px-margin-desktop py-margin-mobile flex flex-col md:flex-row justify-between items-center gap-gutter max-w-max-width-content mx-auto">
+<div class="flex flex-col items-center md:items-start gap-2">
+<span class="font-label-md text-label-md font-bold text-primary">ManakAI</span>
+<span class="text-on-surface-variant font-body-md text-body-md text-sm text-center md:text-left">© 2024 Bureau of Indian Standards. All rights reserved.</span>
+</div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-bis-gold transition-colors text-sm" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-bis-gold transition-colors text-sm" href="#">Terms of Service</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-bis-gold transition-colors text-sm" href="#">Accessibility</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-bis-gold transition-colors text-sm" href="#">Contact BIS</a>
+</div>
+</div>
+</footer>
+</body><script src="../js/navigation.js"></script></html>

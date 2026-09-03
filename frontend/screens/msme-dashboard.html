@@ -1,0 +1,289 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>ManakAI - Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#f3f4f5",
+                        "bis-gold": "#B8860B",
+                        "on-secondary-fixed-variant": "#00429c",
+                        "tertiary-fixed-dim": "#88d982",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#ba1a1a",
+                        "background": "#f8f9fa",
+                        "surface-container-high": "#e7e8e9",
+                        "surface-dim": "#d9dadb",
+                        "surface-bright": "#f8f9fa",
+                        "on-tertiary-fixed-variant": "#005312",
+                        "secondary-fixed": "#d9e2ff",
+                        "primary-container": "#1a237e",
+                        "surface-tint": "#4c56af",
+                        "on-error-container": "#93000a",
+                        "on-surface": "#191c1d",
+                        "on-surface-variant": "#454652",
+                        "surface-variant": "#e1e3e4",
+                        "on-tertiary-container": "#5aa958",
+                        "outline": "#767683",
+                        "outline-variant": "#c6c5d4",
+                        "inverse-surface": "#2e3132",
+                        "surface-container": "#edeeef",
+                        "on-primary-fixed": "#000767",
+                        "inverse-primary": "#bdc2ff",
+                        "secondary-fixed-dim": "#b0c6ff",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "primary-fixed": "#e0e0ff",
+                        "on-primary-container": "#8690ee",
+                        "tertiary": "#002103",
+                        "text-secondary": "#424242",
+                        "success-green": "#2E7D32",
+                        "surface": "#f8f9fa",
+                        "text-primary": "#121212",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "alert-red": "#C62828",
+                        "primary": "#000666",
+                        "primary-fixed-dim": "#bdc2ff",
+                        "tertiary-container": "#003909",
+                        "on-tertiary-fixed": "#002204",
+                        "border-subtle": "#E0E0E0",
+                        "tertiary-fixed": "#a3f69c",
+                        "secondary": "#2b5bb5",
+                        "inverse-on-surface": "#f0f1f2",
+                        "error-container": "#ffdad6",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-secondary-container": "#00337c",
+                        "on-background": "#191c1d",
+                        "on-secondary-fixed": "#001945",
+                        "on-primary-fixed-variant": "#343d96",
+                        "secondary-container": "#759efd"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "max-width-content": "1200px",
+                        "unit": "4px",
+                        "touch-target": "48px",
+                        "margin-desktop": "48px",
+                        "margin-mobile": "16px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "code-sm": ["monospace"],
+                        "headline-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "code-sm": ["13px", { "lineHeight": "18px", "fontWeight": "500" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md text-body-md antialiased h-screen flex flex-col md:flex-row overflow-hidden">
+<!-- SideNavBar (Desktop) -->
+<nav class="hidden lg:flex flex-col border-r border-outline-variant dark:border-outline w-64 z-40 bg-surface-container-low dark:bg-surface-container-lowest fixed left-0 top-0 h-full">
+<div class="p-6 border-b border-outline-variant flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" data-icon="assured_workload">assured_workload</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-black text-primary">ManakAI</h1>
+<p class="font-label-md text-label-md text-on-surface-variant">Regulatory Assistant</p>
+</div>
+</div>
+<div class="p-4">
+<button class="w-full bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md h-touch-target rounded-full flex items-center justify-center gap-2 transition-all shadow-sm">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+                New Inquiry
+            </button>
+</div>
+<ul class="flex-1 overflow-y-auto py-2 space-y-1">
+<li>
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-xl mx-2 font-label-md text-label-md transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined fill" data-icon="dashboard">dashboard</span>
+                    Dashboard
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-variant mx-2 rounded-xl font-label-md text-label-md transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+                    Research
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-variant mx-2 rounded-xl font-label-md text-label-md transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="verified">verified</span>
+                    Certificates
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-variant mx-2 rounded-xl font-label-md text-label-md transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="gavel">gavel</span>
+                    Compliance
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-variant mx-2 rounded-xl font-label-md text-label-md transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="help_center">help_center</span>
+                    Support
+                </a>
+</li>
+</ul>
+<div class="p-4 border-t border-outline-variant space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-variant mx-2 rounded-xl font-label-md text-label-md transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                Settings
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-variant mx-2 rounded-xl font-label-md text-label-md transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                Logout
+            </a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col min-w-0 lg:ml-64 relative bg-background">
+<!-- TopNavBar (Mobile / Header context) -->
+<header class="bg-surface dark:bg-background border-b border-outline-variant dark:border-outline sticky top-0 z-30 lg:hidden">
+<div class="flex justify-between items-center w-full px-margin-mobile h-touch-target">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">ManakAI</h1>
+<button class="w-touch-target h-touch-target flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+</div>
+</header>
+<!-- Dashboard Canvas -->
+<div class="flex-1 overflow-y-auto p-margin-mobile md:p-margin-desktop bg-surface-container-lowest">
+<div class="max-w-max-width-content mx-auto">
+<!-- Page Header -->
+<div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-2">Standard Finder</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Identify applicable Indian Standards for your product.</p>
+</div>
+<div class="flex items-center gap-3 bg-surface-container p-1 rounded-xl">
+<button class="px-4 py-2 rounded-lg bg-surface-container-lowest text-primary font-label-md text-label-md shadow-sm border border-border-subtle">Industry / MSME</button>
+<button class="px-4 py-2 rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-variant transition-colors">Consumer</button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Left Column: Input Form -->
+<div class="lg:col-span-5 space-y-6">
+<div class="bg-surface-container-lowest border border-border-subtle rounded-xl p-6 shadow-sm">
+<h3 class="font-headline-md text-headline-md text-primary mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="assignment">assignment</span>
+                                Tell us about your product
+                            </h3>
+<form class="space-y-5">
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1">Product Name</label>
+<input class="w-full h-touch-target px-4 border border-outline rounded-lg bg-surface-bright focus:border-secondary focus:ring-1 focus:ring-secondary font-body-md text-body-md" placeholder="e.g., Electric Iron, Ceiling Fan" type="text">
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1">Category</label>
+<select class="w-full h-touch-target px-4 border border-outline rounded-lg bg-surface-bright focus:border-secondary focus:ring-1 focus:ring-secondary font-body-md text-body-md">
+<option>Electrical &amp; Electronics</option>
+<option>Mechanical Engineering</option>
+<option>Civil Engineering</option>
+<option>Chemicals</option>
+<option>Textiles</option>
+</select>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1">Primary Material</label>
+<input class="w-full h-touch-target px-4 border border-outline rounded-lg bg-surface-bright focus:border-secondary focus:ring-1 focus:ring-secondary font-body-md text-body-md" placeholder="e.g., Copper, Stainless Steel, Plastic" type="text">
+</div>
+<div class="pt-2">
+<label class="block font-label-md text-label-md text-on-surface mb-2">Upload Bill of Materials (BOM) <span class="text-on-surface-variant font-normal">(Optional)</span></label>
+<div class="border-2 border-dashed border-outline-variant rounded-xl p-6 flex flex-col items-center justify-center text-center bg-surface-container-low hover:bg-surface-container transition-colors cursor-pointer group">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center mb-3 group-hover:bg-secondary-fixed transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary" data-icon="upload_file">upload_file</span>
+</div>
+<p class="font-label-md text-label-md text-primary">Click to upload or drag and drop</p>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1 text-sm">PDF, DOCX, or Excel (Max. 10MB)</p>
+</div>
+</div>
+<button class="w-full h-touch-target bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md rounded-lg transition-colors mt-6 flex items-center justify-center gap-2" type="button">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+                                    Find Standards
+                                </button>
+</form>
+</div>
+</div>
+<!-- Right Column: Results & Explanation -->
+<div class="lg:col-span-7 space-y-6">
+<!-- Results Header -->
+<div class="flex items-center justify-between border-b border-border-subtle pb-4">
+<h3 class="font-headline-md text-headline-md text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-success-green" data-icon="check_circle">check_circle</span>
+                                Recommended Standards
+                            </h3>
+<span class="bg-surface-container-high px-3 py-1 rounded-full font-label-md text-label-md text-on-surface-variant">3 Matches Found</span>
+</div>
+<!-- Result Card 1 (Primary) -->
+<div class="bg-surface-container-lowest border border-border-subtle rounded-xl p-5 shadow-sm relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-bis-gold"></div>
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center gap-3">
+<span class="bg-primary-container text-on-primary-container px-3 py-1 rounded-md font-code-sm text-code-sm font-bold border border-outline-variant">IS 302-2-3: 2007</span>
+<span class="bg-bis-gold text-on-primary px-3 py-1 rounded-full font-label-md text-label-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="warning">warning</span>
+                                        Mandatory (QCO)
+                                    </span>
+</div>
+<button class="text-secondary hover:text-primary font-label-md text-label-md flex items-center gap-1">
+                                    View Source <span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<h4 class="font-body-lg text-body-lg text-on-surface font-semibold mb-2">Safety of Household and Similar Electrical Appliances - Part 2: Particular Requirements for Electric Irons</h4>
+<div class="bg-surface-container-low p-4 rounded-lg mt-4 border border-outline-variant">
+<h5 class="font-label-md text-label-md text-primary mb-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]" data-icon="lightbulb">lightbulb</span>
+                                    Why this matched:
+                                </h5>
+<p class="font-body-md text-body-md text-on-surface-variant">Based on your input of "Electric Iron" and category "Electrical &amp; Electronics". This is the primary horizontal standard regulating safety requirements for domestic electric irons in India.</p>
+<div class="mt-3 flex flex-wrap gap-2">
+<span class="inline-flex items-center gap-1 px-2 py-1 bg-surface-container-highest rounded text-sm text-on-surface-variant border border-outline-variant"><span class="material-symbols-outlined text-[14px]" data-icon="tag">tag</span> Heating Element</span>
+<span class="inline-flex items-center gap-1 px-2 py-1 bg-surface-container-highest rounded text-sm text-on-surface-variant border border-outline-variant"><span class="material-symbols-outlined text-[14px]" data-icon="tag">tag</span> Safety Testing</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body><script src="../js/navigation.js"></script></html>

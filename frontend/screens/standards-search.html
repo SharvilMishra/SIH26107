@@ -1,0 +1,327 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>ManakAI - Standards Search</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "outline-variant": "#c6c5d4",
+                        "on-background": "#191c1d",
+                        "error": "#ba1a1a",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-surface-variant": "#454652",
+                        "surface-variant": "#e1e3e4",
+                        "secondary": "#2b5bb5",
+                        "error-container": "#ffdad6",
+                        "primary-container": "#1a237e",
+                        "tertiary": "#002103",
+                        "on-surface": "#191c1d",
+                        "primary-fixed-dim": "#bdc2ff",
+                        "background": "#f8f9fa",
+                        "on-secondary-fixed": "#001945",
+                        "surface-dim": "#d9dadb",
+                        "surface-container-high": "#e7e8e9",
+                        "primary": "#000666",
+                        "on-tertiary-fixed": "#002204",
+                        "alert-red": "#C62828",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed-variant": "#00429c",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed-variant": "#005312",
+                        "on-primary-container": "#8690ee",
+                        "inverse-on-surface": "#f0f1f2",
+                        "border-subtle": "#E0E0E0",
+                        "bis-gold": "#B8860B",
+                        "tertiary-container": "#003909",
+                        "surface-container": "#edeeef",
+                        "surface-tint": "#4c56af",
+                        "tertiary-fixed-dim": "#88d982",
+                        "secondary-fixed-dim": "#b0c6ff",
+                        "on-tertiary-container": "#5aa958",
+                        "on-primary-fixed": "#000767",
+                        "surface": "#f8f9fa",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#a3f69c",
+                        "text-primary": "#121212",
+                        "on-secondary-container": "#00337c",
+                        "outline": "#767683",
+                        "surface-container-low": "#f3f4f5",
+                        "inverse-primary": "#bdc2ff",
+                        "surface-bright": "#f8f9fa",
+                        "inverse-surface": "#2e3132",
+                        "on-secondary": "#ffffff",
+                        "secondary-container": "#759efd",
+                        "on-primary-fixed-variant": "#343d96",
+                        "success-green": "#2E7D32",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed": "#d9e2ff",
+                        "text-secondary": "#424242",
+                        "primary-fixed": "#e0e0ff"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    spacing: {
+                        "margin-mobile": "16px",
+                        "margin-desktop": "48px",
+                        "gutter": "16px",
+                        "max-width-content": "1200px",
+                        "touch-target": "48px",
+                        "unit": "4px"
+                    },
+                    fontFamily: {
+                        "display-lg": ["Inter", "sans-serif"],
+                        "headline-md": ["Inter", "sans-serif"],
+                        "body-md": ["Inter", "sans-serif"],
+                        "label-md": ["Inter", "sans-serif"],
+                        "body-lg": ["Inter", "sans-serif"],
+                        "headline-lg-mobile": ["Inter", "sans-serif"],
+                        "code-sm": ["monospace"],
+                        "headline-lg": ["Inter", "sans-serif"]
+                    },
+                    fontSize: {
+                        "display-lg": ["48px", { lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "headline-md": ["24px", { lineHeight: "32px", fontWeight: "600" }],
+                        "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+                        "label-md": ["14px", { lineHeight: "20px", fontWeight: "600" }],
+                        "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+                        "headline-lg-mobile": ["24px", { lineHeight: "32px", fontWeight: "700" }],
+                        "code-sm": ["13px", { lineHeight: "18px", fontWeight: "500" }],
+                        "headline-lg": ["32px", { lineHeight: "40px", fontWeight: "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md min-h-screen flex">
+<!-- Shared Component: SideNavBar -->
+<nav class="hidden lg:flex flex-col border-r w-64 z-40 fixed left-0 top-0 h-full border-outline-variant bg-surface-container-low transition-all duration-200 ease-in-out">
+<div class="p-6 flex items-center gap-4 border-b border-outline-variant">
+<img class="w-10 h-10 rounded-full object-cover shadow-sm bg-surface" data-alt="A clean, minimalist vector logo representing a national standards bureau. The logo features a stylized, geometric emblem in deep indigo blue, symbolizing trust, precision, and authority. Set against a pristine white background, the design is sharp and corporate, perfectly suited for a government-grade regulatory application's sidebar header." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFhOcOUXICFHSD6H17L05XvAvoZVHhqaKWqD5w5PP71qHFI2yrqtFv6lO5BFRZj22z7OzqmkGHKYeXzelY_Na5kjJW--_sz40mdUoGGOiXu3XStUr_RwYW4V1JaHe8LFY1n-y3KruKcE8rE-zMQXSZH_eQ-ACBFyO3HomAZWI19i3vZUNBNZ-9zVSC1RLYJL-7fBn-SzOr99uPrjVModG0YCheb2eDVrv-nrQKbxyhEzzp5692BXNj">
+<div>
+<h1 class="font-headline-md text-headline-md font-black text-primary">ManakAI</h1>
+<p class="font-label-md text-label-md text-on-surface-variant">Regulatory Assistant</p>
+</div>
+</div>
+<div class="px-4 py-6">
+<button class="w-full bg-primary text-on-primary h-touch-target rounded-full font-label-md text-label-md flex items-center justify-center gap-2 hover:bg-on-primary-fixed-variant transition-colors shadow-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add</span>
+                New Inquiry
+            </button>
+</div>
+<ul class="flex flex-col gap-2 flex-1 px-2 overflow-y-auto">
+<!-- Dashboard -->
+<li>
+<a class="flex items-center gap-3 h-touch-target text-on-surface-variant hover:bg-surface-container-high px-4 py-2 rounded-xl transition-all duration-200 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                    Dashboard
+                </a>
+</li>
+<!-- Research (Active) -->
+<li>
+<a class="flex items-center gap-3 h-touch-target bg-secondary-container text-on-secondary-container rounded-xl mx-2 px-4 py-2 transition-all duration-200 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">analytics</span>
+                    Research
+                </a>
+</li>
+<!-- Certificates -->
+<li>
+<a class="flex items-center gap-3 h-touch-target text-on-surface-variant hover:bg-surface-container-high px-4 py-2 rounded-xl transition-all duration-200 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">verified</span>
+                    Certificates
+                </a>
+</li>
+<!-- Compliance -->
+<li>
+<a class="flex items-center gap-3 h-touch-target text-on-surface-variant hover:bg-surface-container-high px-4 py-2 rounded-xl transition-all duration-200 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">gavel</span>
+                    Compliance
+                </a>
+</li>
+<!-- Support -->
+<li>
+<a class="flex items-center gap-3 h-touch-target text-on-surface-variant hover:bg-surface-container-high px-4 py-2 rounded-xl transition-all duration-200 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">help_center</span>
+                    Support
+                </a>
+</li>
+</ul>
+<div class="p-4 border-t border-outline-variant">
+<ul class="flex flex-col gap-2">
+<li>
+<a class="flex items-center gap-3 h-touch-target text-on-surface-variant hover:bg-surface-container-high px-4 py-2 rounded-xl transition-all duration-200 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">settings</span>
+                        Settings
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-3 h-touch-target text-on-surface-variant hover:bg-surface-container-high px-4 py-2 rounded-xl transition-all duration-200 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">logout</span>
+                        Logout
+                    </a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 lg:ml-64 flex flex-col min-h-screen">
+<!-- Shared Component: TopNavBar -->
+<header class="bg-surface docked full-width top-0 border-b border-outline-variant z-30 sticky">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-max-width-content mx-auto h-touch-target">
+<!-- Mobile Menu Button (Hidden on Desktop) -->
+<button class="lg:hidden text-primary p-2">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<!-- Nav Links -->
+<nav class="hidden md:flex gap-8 items-center h-full">
+<a class="h-full flex items-center text-on-surface-variant hover:text-secondary transition-colors cursor-pointer active:scale-95 transition-transform font-body-md text-body-md" href="#">Home</a>
+<a class="h-full flex items-center text-on-surface-variant hover:text-secondary transition-colors cursor-pointer active:scale-95 transition-transform font-body-md text-body-md" href="#">Ask AI</a>
+<a class="h-full flex items-center text-on-surface-variant hover:text-secondary transition-colors cursor-pointer active:scale-95 transition-transform font-body-md text-body-md" href="#">Verify</a>
+<!-- Active Tab -->
+<a class="h-full flex items-center text-primary font-bold border-b-2 border-primary pb-1 cursor-pointer active:scale-95 transition-transform font-body-md text-body-md mt-[2px]" href="#">Standards</a>
+<a class="h-full flex items-center text-on-surface-variant hover:text-secondary transition-colors cursor-pointer active:scale-95 transition-transform font-body-md text-body-md" href="#">Complaints</a>
+</nav>
+<!-- Actions -->
+<div class="flex items-center gap-4">
+<button class="font-label-md text-label-md text-primary flex items-center gap-1 hover:text-secondary transition-colors">
+<span class="material-symbols-outlined text-sm">language</span>
+                        Language
+                    </button>
+<div class="w-px h-6 bg-outline-variant"></div>
+<button class="font-label-md text-label-md text-primary flex items-center gap-1 hover:text-secondary transition-colors">
+<span class="material-symbols-outlined text-sm">tune</span>
+                        Switch Mode
+                    </button>
+</div>
+</div>
+</header>
+<!-- Main Search Area -->
+<main class="flex-1 w-full max-w-max-width-content mx-auto px-margin-mobile md:px-margin-desktop py-8 md:py-12 flex flex-col gap-8">
+<!-- Hero Search Section -->
+<section class="flex flex-col gap-6">
+<div class="flex flex-col gap-2">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary tracking-tight">Standards Discovery Library</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl">Search, filter, and access complete technical specifications across all Bureau of Indian Standards (BIS) categories.</p>
+</div>
+<div class="relative w-full max-w-4xl">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline text-2xl">search</span>
+</div>
+<input class="w-full h-14 pl-12 pr-32 rounded-xl border border-outline-variant bg-surface-container-lowest focus:ring-2 focus:ring-secondary focus:border-secondary font-body-lg text-body-lg text-on-surface shadow-sm transition-shadow" id="standards-search-input" placeholder="Search by Product Name or Keywords (e.g., Electronics)" type="text">
+<button class="absolute inset-y-1.5 right-1.5 bg-primary hover:bg-on-primary-fixed-variant text-on-primary px-6 rounded-lg font-label-md text-label-md transition-colors shadow-sm" id="standards-search-btn">
+                        Search
+                    </button>
+</div>
+<!-- Quick Tags -->
+<div class="flex flex-wrap gap-2 items-center">
+<span class="font-label-md text-label-md text-on-surface-variant mr-2">Trending:</span>
+<button class="quick-tag px-3 py-1.5 rounded-full bg-surface-container border border-border-subtle font-label-md text-label-md text-text-secondary hover:bg-surface-container-high transition-colors" type="button" data-keyword="Smart Meters">Smart Meters</button>
+<button class="quick-tag px-3 py-1.5 rounded-full bg-surface-container border border-border-subtle font-label-md text-label-md text-text-secondary hover:bg-surface-container-high transition-colors" type="button" data-keyword="Electric Vehicles">Electric Vehicles</button>
+<button class="quick-tag px-3 py-1.5 rounded-full bg-surface-container border border-border-subtle font-label-md text-label-md text-text-secondary hover:bg-surface-container-high transition-colors" type="button" data-keyword="Electronics">Electronics</button>
+</div>
+</section>
+<!-- Content Grid: Sidebar + Results -->
+<div class="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
+<!-- Advanced Filter Sidebar -->
+<aside class="lg:col-span-1 flex flex-col gap-6 bg-surface-container-lowest border border-border-subtle rounded-xl p-6 shadow-sm sticky top-24">
+<div class="flex items-center justify-between border-b border-border-subtle pb-4">
+<h3 class="font-headline-md text-headline-md text-primary">Filters</h3>
+<button class="font-label-md text-label-md text-secondary hover:underline">Clear All</button>
+</div>
+<!-- Filter Group: Status (not yet supported by the backend — display only) -->
+<div class="flex flex-col gap-3 border-b border-border-subtle pb-6 opacity-60" title="Not wired to the backend yet — the standards table has no status field.">
+<h4 class="font-label-md text-label-md text-on-surface">Regulatory Status</h4>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="w-5 h-5 rounded border-outline text-secondary focus:ring-secondary" type="checkbox">
+<span class="font-body-md text-body-md text-on-surface group-hover:text-secondary transition-colors flex items-center gap-2">
+                                Mandatory (QCO)
+                                <span class="w-2 h-2 rounded-full bg-bis-gold"></span>
+</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-5 h-5 rounded border-outline text-secondary focus:ring-secondary" type="checkbox">
+<span class="font-body-md text-body-md text-on-surface group-hover:text-secondary transition-colors">Voluntary</span>
+</label>
+</div>
+<!-- Filter Group: Category -->
+<div class="flex flex-col gap-3 border-b border-border-subtle pb-6">
+<h4 class="font-label-md text-label-md text-on-surface">Industry Category</h4>
+<p class="font-label-md text-label-md text-on-surface-variant text-[11px]">Pick one — matched exactly against the backend's category field.</p>
+<div class="flex flex-col gap-2 max-h-48 overflow-y-auto pr-2 custom-scrollbar" id="category-filter-group">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="category-filter-checkbox w-5 h-5 rounded border-outline text-secondary focus:ring-secondary" type="checkbox" data-category="Electronics &amp; IT">
+<span class="font-body-md text-body-md text-on-surface group-hover:text-secondary transition-colors">Electronics &amp; IT</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="category-filter-checkbox w-5 h-5 rounded border-outline text-secondary focus:ring-secondary" type="checkbox" data-category="Chemicals">
+<span class="font-body-md text-body-md text-on-surface group-hover:text-secondary transition-colors">Chemicals</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="category-filter-checkbox w-5 h-5 rounded border-outline text-secondary focus:ring-secondary" type="checkbox" data-category="Metallurgical (Steel)">
+<span class="font-body-md text-body-md text-on-surface group-hover:text-secondary transition-colors">Metallurgical (Steel)</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="category-filter-checkbox w-5 h-5 rounded border-outline text-secondary focus:ring-secondary" type="checkbox" data-category="Civil Engineering">
+<span class="font-body-md text-body-md text-on-surface group-hover:text-secondary transition-colors">Civil Engineering</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="category-filter-checkbox w-5 h-5 rounded border-outline text-secondary focus:ring-secondary" type="checkbox" data-category="Toys &amp; Children's Prod.">
+<span class="font-body-md text-body-md text-on-surface group-hover:text-secondary transition-colors">Toys &amp; Children's Prod.</span>
+</label>
+</div>
+</div>
+<!-- Filter Group: Year (not yet supported by the backend — display only) -->
+<div class="flex flex-col gap-3 opacity-60" title="Not wired to the backend yet — the standards table has no publication-year field.">
+<h4 class="font-label-md text-label-md text-on-surface">Publication Year</h4>
+<select class="w-full h-12 rounded-lg border border-outline-variant bg-surface focus:ring-2 focus:ring-secondary focus:border-secondary font-body-md text-body-md text-on-surface">
+<option>All Years</option>
+<option>2024</option>
+<option>2023</option>
+<option>2022</option>
+<option>2021 &amp; Older</option>
+</select>
+</div>
+</aside>
+<!-- Results Area -->
+<div class="lg:col-span-3 flex flex-col gap-6">
+<div class="flex items-center justify-between pb-2 border-b border-border-subtle">
+<p class="font-body-md text-body-md text-on-surface-variant" id="results-count-label">Loading standards…</p>
+</div>
+<!-- Grid of IS Cards (populated by js/standards.js) -->
+<div id="results-grid" class="grid grid-cols-1 xl:grid-cols-2 gap-4"></div>
+</div>
+</div>
+</main>
+<!-- Shared Component: Footer -->
+<footer class="bg-surface-container-high full-width py-8 border-t border-outline-variant mt-auto">
+<div class="w-full px-margin-mobile md:px-margin-desktop py-margin-mobile flex flex-col md:flex-row justify-between items-center gap-gutter max-w-max-width-content mx-auto">
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md font-bold text-primary">ManakAI</span>
+<span class="text-on-surface-variant font-body-md text-body-md">|</span>
+<span class="text-on-surface-variant font-body-md text-body-md">© 2024 Bureau of Indian Standards. All rights reserved.</span>
+</div>
+<div class="flex flex-wrap items-center gap-6">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-bis-gold transition-colors duration-200" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-bis-gold transition-colors duration-200" href="#">Terms of Service</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-bis-gold transition-colors duration-200" href="#">Accessibility</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-bis-gold transition-colors duration-200" href="#">Contact BIS</a>
+</div>
+</div>
+</footer>
+</div>
+</body><script src="../js/navigation.js"></script><script src="../js/config.js"></script><script src="../js/standards.js"></script></html>

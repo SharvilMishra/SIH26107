@@ -1,0 +1,257 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>ManakAI - Laboratory Finder</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-container": "#8690ee",
+                        "outline": "#767683",
+                        "secondary": "#2b5bb5",
+                        "on-secondary-fixed-variant": "#00429c",
+                        "alert-red": "#C62828",
+                        "on-primary-fixed": "#000767",
+                        "tertiary-container": "#003909",
+                        "inverse-surface": "#2e3132",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#4c56af",
+                        "tertiary": "#002103",
+                        "error": "#ba1a1a",
+                        "primary-container": "#1a237e",
+                        "on-secondary-container": "#00337c",
+                        "on-secondary-fixed": "#001945",
+                        "on-tertiary-container": "#5aa958",
+                        "bis-gold": "#B8860B",
+                        "surface-variant": "#e1e3e4",
+                        "on-tertiary-fixed": "#002204",
+                        "surface-container-high": "#e7e8e9",
+                        "tertiary-fixed": "#a3f69c",
+                        "on-background": "#191c1d",
+                        "on-primary-fixed-variant": "#343d96",
+                        "text-primary": "#121212",
+                        "on-secondary": "#ffffff",
+                        "outline-variant": "#c6c5d4",
+                        "inverse-on-surface": "#f0f1f2",
+                        "surface-container-low": "#f3f4f5",
+                        "primary-fixed-dim": "#bdc2ff",
+                        "background": "#f8f9fa",
+                        "text-secondary": "#424242",
+                        "border-subtle": "#E0E0E0",
+                        "on-surface": "#191c1d",
+                        "surface": "#f8f9fa",
+                        "secondary-fixed-dim": "#b0c6ff",
+                        "primary-fixed": "#e0e0ff",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#bdc2ff",
+                        "primary": "#000666",
+                        "on-tertiary-fixed-variant": "#005312",
+                        "tertiary-fixed-dim": "#88d982",
+                        "surface-container": "#edeeef",
+                        "secondary-fixed": "#d9e2ff",
+                        "surface-bright": "#f8f9fa",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-dim": "#d9dadb",
+                        "on-tertiary": "#ffffff",
+                        "success-green": "#2E7D32",
+                        "on-surface-variant": "#454652",
+                        "secondary-container": "#759efd",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "gutter": "16px",
+                        "unit": "4px",
+                        "margin-desktop": "48px",
+                        "touch-target": "48px",
+                        "max-width-content": "1200px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "code-sm": ["monospace"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "code-sm": ["13px", { "lineHeight": "18px", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col antialiased">
+<!-- TopNavBar -->
+<nav class="bg-surface dark:bg-background docked full-width top-0 border-b border-outline-variant dark:border-outline flat no shadows z-50">
+<div class="flex justify-between items-center w-full px-margin-desktop max-w-max-width-content mx-auto h-touch-target">
+<div class="flex items-center gap-4">
+<span class="text-headline-md font-headline-md font-bold text-primary dark:text-primary-fixed cursor-pointer active:scale-95 transition-transform">ManakAI</span>
+</div>
+<div class="hidden md:flex items-center gap-6">
+<a class="text-on-surface-variant dark:text-surface-variant font-body-md text-body-md hover:text-secondary dark:hover:text-secondary-fixed transition-colors cursor-pointer active:scale-95 transition-transform" href="#">Home</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-body-md text-body-md hover:text-secondary dark:hover:text-secondary-fixed transition-colors cursor-pointer active:scale-95 transition-transform" href="#">Ask AI</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-body-md text-body-md hover:text-secondary dark:hover:text-secondary-fixed transition-colors cursor-pointer active:scale-95 transition-transform" href="#">Verify</a>
+<a class="text-primary dark:text-primary-fixed-dim font-bold border-b-2 border-primary dark:border-primary-fixed-dim pb-1 font-body-md text-body-md hover:text-secondary dark:hover:text-secondary-fixed transition-colors cursor-pointer active:scale-95 transition-transform" href="#">Standards</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-body-md text-body-md hover:text-secondary dark:hover:text-secondary-fixed transition-colors cursor-pointer active:scale-95 transition-transform" href="#">Complaints</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-primary dark:text-primary-fixed-dim font-label-md text-label-md hover:text-secondary transition-colors h-touch-target px-2 flex items-center cursor-pointer active:scale-95 transition-transform">Language</button>
+<button class="text-on-surface-variant dark:text-surface-variant font-label-md text-label-md hover:text-secondary transition-colors h-touch-target px-2 flex items-center cursor-pointer active:scale-95 transition-transform">Switch Mode</button>
+</div>
+</div>
+</nav>
+<div class="flex flex-1 overflow-hidden relative">
+<!-- SideNavBar -->
+<aside class="bg-surface-container-low dark:bg-surface-container-lowest hidden lg:flex flex-col border-r w-64 z-40 fixed left-0 top-0 h-full border-outline-variant dark:border-outline flat no shadows pt-[48px]">
+<div class="p-6 pb-2 border-b border-outline-variant dark:border-outline">
+<div class="flex items-center gap-3 mb-4">
+<img class="w-10 h-10 rounded-full object-cover border border-outline-variant" data-alt="A small, professional abstract icon representing a national standards bureau. It should be simple, high-contrast, and use deep indigo and gold tones against a white background, suitable for a light-mode corporate dashboard." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMicPMYuLxz4OUnq0zxQdmJFqUQJ69D8tDTYgGo_DN95LVFh02gO68qY5dCpKkPHUiiD6nV_ZT_imABWM9o_7i9SkQvifac6HzbYXd_gOHY_ax1X24PnmFyXp1vDUBNiZGb6xUEjUmtYA9huet5OU-VA6EagtE1Wlu662DVfeLDyGHyCMvYjwK7fBh-uwx59vz9PGRBi874J9fkM4_bpljsa4zwJ3qJWfUmiUnkwfxA9_i8X19fPTG">
+<div>
+<h2 class="font-headline-md text-headline-md font-black text-primary">ManakAI</h2>
+<p class="font-label-md text-label-md text-on-surface-variant">Regulatory Assistant</p>
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary h-touch-target rounded-lg font-label-md text-label-md flex items-center justify-center gap-2 hover:bg-primary-container transition-colors mb-4">
+<span class="material-symbols-outlined" data-icon="add" style="font-variation-settings: 'FILL' 1;">add</span>
+                    New Inquiry
+                </button>
+</div>
+<div class="flex-1 overflow-y-auto py-4 flex flex-col gap-1">
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high px-4 py-2 font-label-md text-label-md flex items-center gap-3 mx-2 rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                    Dashboard
+                </a>
+<a class="bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-xl mx-2 font-label-md text-label-md flex items-center gap-3 px-4 py-2 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="analytics" style="font-variation-settings: 'FILL' 1;">analytics</span>
+                    Research
+                </a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high px-4 py-2 font-label-md text-label-md flex items-center gap-3 mx-2 rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="verified">verified</span>
+                    Certificates
+                </a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high px-4 py-2 font-label-md text-label-md flex items-center gap-3 mx-2 rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="gavel">gavel</span>
+                    Compliance
+                </a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high px-4 py-2 font-label-md text-label-md flex items-center gap-3 mx-2 rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="help_center">help_center</span>
+                    Support
+                </a>
+</div>
+<div class="mt-auto border-t border-outline-variant dark:border-outline p-4 flex flex-col gap-1">
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high px-4 py-2 font-label-md text-label-md flex items-center gap-3 mx-2 rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                    Settings
+                </a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high px-4 py-2 font-label-md text-label-md flex items-center gap-3 mx-2 rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                    Logout
+                </a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 lg:ml-64 flex flex-col lg:flex-row h-[calc(100vh-48px)]">
+<!-- Filter & List Panel -->
+<div class="w-full lg:w-[450px] bg-surface flex flex-col border-r border-outline-variant h-full overflow-hidden">
+<div class="p-6 border-b border-border-subtle bg-surface-container-lowest">
+<h1 class="font-headline-lg text-headline-lg text-primary mb-2">Laboratory Finder</h1>
+<p class="font-body-md text-body-md text-text-secondary mb-6">Locate BIS-accredited testing facilities for MSME compliance.</p>
+<!-- Search Input -->
+<div class="relative mb-4 flex gap-2">
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full h-touch-target pl-10 pr-4 bg-surface-container-low border border-border-subtle rounded-lg font-body-md text-body-md focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors" id="lab-product-input" placeholder="Product / test parameter, e.g. Electrical" type="text">
+</div>
+<button class="h-touch-target px-3 bg-surface-container-low border border-border-subtle rounded-lg text-text-secondary hover:bg-surface-container-high transition-colors flex items-center justify-center" id="lab-search-btn" title="Search">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="h-touch-target px-3 bg-surface-container-low border border-border-subtle rounded-lg text-text-secondary hover:bg-surface-container-high transition-colors flex items-center justify-center" id="lab-location-btn" title="Use my location">
+<span class="material-symbols-outlined">my_location</span>
+</button>
+</div>
+<!-- Filters (Testing Scope/City/Accreditation not yet backed by the labs table — display only) -->
+<div class="flex gap-2 overflow-x-auto pb-2 scrollbar-hide opacity-60" title="Not wired to the backend yet.">
+<select class="h-[40px] px-3 bg-surface border border-border-subtle rounded-full font-label-md text-label-md text-text-primary focus:outline-none focus:border-secondary shrink-0">
+<option>Testing Scope</option>
+<option>Mechanical</option>
+<option>Electrical</option>
+<option>Chemical</option>
+</select>
+<select class="h-[40px] px-3 bg-surface border border-border-subtle rounded-full font-label-md text-label-md text-text-primary focus:outline-none focus:border-secondary shrink-0">
+<option>City</option>
+<option>New Delhi</option>
+<option>Mumbai</option>
+<option>Chennai</option>
+</select>
+<select class="h-[40px] px-3 bg-surface border border-border-subtle rounded-full font-label-md text-label-md text-text-primary focus:outline-none focus:border-secondary shrink-0">
+<option>Accreditation</option>
+<option>BIS Recognized</option>
+<option>NABL Accredited</option>
+</select>
+</div>
+<p class="font-label-md text-label-md text-on-surface-variant text-[11px] mt-2" id="lab-status-label">Loading labs…</p>
+</div>
+<!-- Lab List (populated by js/labs.js) -->
+<div class="flex-1 overflow-y-auto p-4 flex flex-col gap-4 bg-surface-container-low" id="lab-list-container">
+</div>
+</div>
+<!-- Map View Area -->
+<div class="hidden lg:block flex-1 bg-surface-variant relative">
+<!-- Using an image to simulate the map as per instructions -->
+<img class="w-full h-full object-cover" data-alt="A clean, highly detailed digital map interface showing industrial zones in New Delhi, India. The map uses a light-mode color scheme with subtle greys, whites, and pale blues for roads and water. There are professional, high-contrast markers indicating laboratory locations using deep indigo and gold accents, consistent with a corporate government dashboard." data-location="New Delhi, India" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgvbNl3oVREQS8XFizf_cuNdSJn1iGi2BCeOjhK9Z3vFddDxymSh5ihIQKyuT9axNo_U1qlNXfmr2h4chEq8w0GtftdGASjiNlhqvqJZWv4kH-tLjBO7dSItNxTsHuB4DV4DC04SVHas-R3AvY3esWgIDyDukCJzJKE78BLJgO2MrCzpO_MnAEWtP8NKgymM1sjbsPAG7vgIdU1xa3TmInjvNGR1TW_ovyhyT2N6V2VE5Hcxo_DT4d">
+<!-- Map Overlay UI Controls -->
+<div class="absolute top-6 right-6 flex flex-col gap-2">
+<button class="w-10 h-10 bg-surface-container-lowest border border-border-subtle rounded-lg shadow-sm flex items-center justify-center text-text-primary hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined" data-icon="my_location">my_location</span>
+</button>
+<div class="flex flex-col bg-surface-container-lowest border border-border-subtle rounded-lg shadow-sm overflow-hidden">
+<button class="w-10 h-10 flex items-center justify-center text-text-primary hover:bg-surface-container-low border-b border-border-subtle transition-colors">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center text-text-primary hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined" data-icon="remove">remove</span>
+</button>
+</div>
+</div>
+<!-- Floating Info Panel Example -->
+<div class="absolute bottom-8 left-8 right-8 max-w-sm bg-surface-container-lowest p-4 rounded-xl border border-border-subtle shadow-[0px_4px_12px_rgba(0,0,0,0.05)]">
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 bg-primary-container/10 rounded-lg flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary" data-icon="science">science</span>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-text-primary">Regional Testing Center</h4>
+<p class="font-body-md text-[13px] text-text-secondary mt-1">3.2 km away • NABL Accredited for IS 1293</p>
+<button class="mt-2 text-secondary font-label-md text-[13px] hover:underline">View Details</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body><script src="../js/navigation.js"></script><script src="../js/config.js"></script><script src="../js/labs.js"></script></html>

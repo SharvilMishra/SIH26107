@@ -1,0 +1,333 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>ManakAI - Research &amp; Projects</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline-variant": "#c6c5d4",
+                    "on-background": "#191c1d",
+                    "error": "#ba1a1a",
+                    "surface-container-highest": "#e1e3e4",
+                    "on-surface-variant": "#454652",
+                    "surface-variant": "#e1e3e4",
+                    "secondary": "#2b5bb5",
+                    "error-container": "#ffdad6",
+                    "primary-container": "#1a237e",
+                    "tertiary": "#002103",
+                    "on-surface": "#191c1d",
+                    "primary-fixed-dim": "#bdc2ff",
+                    "background": "#f8f9fa",
+                    "on-secondary-fixed": "#001945",
+                    "surface-dim": "#d9dadb",
+                    "surface-container-high": "#e7e8e9",
+                    "primary": "#000666",
+                    "on-tertiary-fixed": "#002204",
+                    "alert-red": "#C62828",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "on-secondary-fixed-variant": "#00429c",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed-variant": "#005312",
+                    "on-primary-container": "#8690ee",
+                    "inverse-on-surface": "#f0f1f2",
+                    "border-subtle": "#E0E0E0",
+                    "bis-gold": "#B8860B",
+                    "tertiary-container": "#003909",
+                    "surface-container": "#edeeef",
+                    "surface-tint": "#4c56af",
+                    "tertiary-fixed-dim": "#88d982",
+                    "secondary-fixed-dim": "#b0c6ff",
+                    "on-tertiary-container": "#5aa958",
+                    "on-primary-fixed": "#000767",
+                    "surface": "#f8f9fa",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed": "#a3f69c",
+                    "text-primary": "#121212",
+                    "on-secondary-container": "#00337c",
+                    "outline": "#767683",
+                    "surface-container-low": "#f3f4f5",
+                    "inverse-primary": "#bdc2ff",
+                    "surface-bright": "#f8f9fa",
+                    "inverse-surface": "#2e3132",
+                    "on-secondary": "#ffffff",
+                    "secondary-container": "#759efd",
+                    "on-primary-fixed-variant": "#343d96",
+                    "success-green": "#2E7D32",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed": "#d9e2ff",
+                    "text-secondary": "#424242",
+                    "primary-fixed": "#e0e0ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-mobile": "16px",
+                    "margin-desktop": "48px",
+                    "gutter": "16px",
+                    "max-width-content": "1200px",
+                    "touch-target": "48px",
+                    "unit": "4px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Inter", "sans-serif"],
+                    "headline-md": ["Inter", "sans-serif"],
+                    "body-md": ["Inter", "sans-serif"],
+                    "label-md": ["Inter", "sans-serif"],
+                    "body-lg": ["Inter", "sans-serif"],
+                    "headline-lg-mobile": ["Inter", "sans-serif"],
+                    "code-sm": ["monospace"],
+                    "headline-lg": ["Inter", "sans-serif"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "code-sm": ["13px", {"lineHeight": "18px", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}]
+            }
+          }
+        }
+      }
+    </script>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col md:flex-row font-body-md">
+<!-- SideNavBar (Desktop) -->
+<nav class="hidden lg:flex flex-col border-r w-64 z-40 bg-surface-container-low dark:bg-surface-container-lowest border-outline-variant dark:border-outline fixed left-0 top-0 h-full">
+<div class="p-6 border-b border-outline-variant dark:border-outline flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary font-bold">
+<span class="material-symbols-outlined">verified</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-black text-primary">ManakAI</h1>
+<p class="font-label-md text-label-md text-on-surface-variant">Regulatory Assistant</p>
+</div>
+</div>
+<div class="p-4">
+<button class="w-full bg-primary text-on-primary font-label-md text-label-md py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-surface-tint transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add</span>
+                New Inquiry
+            </button>
+</div>
+<div class="flex-1 overflow-y-auto py-4 flex flex-col gap-1">
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high px-4 py-2 flex items-center gap-3 transition-all duration-200 ease-in-out font-label-md text-label-md mx-2 rounded-xl" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Dashboard
+            </a>
+<a class="bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-xl mx-2 px-4 py-2 flex items-center gap-3 transition-all duration-200 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">analytics</span>
+                Research
+            </a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high px-4 py-2 flex items-center gap-3 transition-all duration-200 ease-in-out font-label-md text-label-md mx-2 rounded-xl" href="#">
+<span class="material-symbols-outlined">verified</span>
+                Certificates
+            </a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high px-4 py-2 flex items-center gap-3 transition-all duration-200 ease-in-out font-label-md text-label-md mx-2 rounded-xl" href="#">
+<span class="material-symbols-outlined">gavel</span>
+                Compliance
+            </a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high px-4 py-2 flex items-center gap-3 transition-all duration-200 ease-in-out font-label-md text-label-md mx-2 rounded-xl" href="#">
+<span class="material-symbols-outlined">help_center</span>
+                Support
+            </a>
+</div>
+<div class="p-4 border-t border-outline-variant dark:border-outline flex flex-col gap-1">
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high px-4 py-2 flex items-center gap-3 transition-all duration-200 ease-in-out font-label-md text-label-md mx-2 rounded-xl" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Settings
+            </a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high px-4 py-2 flex items-center gap-3 transition-all duration-200 ease-in-out font-label-md text-label-md mx-2 rounded-xl" href="#">
+<span class="material-symbols-outlined">logout</span>
+                Logout
+            </a>
+</div>
+</nav>
+<!-- TopNavBar (Mobile only when side nav is present, but using the shared component structure for desktop context if needed, though strictly we should follow the logic. Applying side nav logic implies we are in app. But for the sake of following JSON, we'll implement TopNav for mobile) -->
+<header class="lg:hidden docked full-width top-0 bg-surface dark:bg-background border-b border-outline-variant dark:border-outline sticky z-50">
+<div class="flex justify-between items-center w-full px-margin-mobile h-touch-target">
+<div class="text-headline-md font-headline-md font-bold text-primary dark:text-primary-fixed">
+                ManakAI
+            </div>
+<button class="p-2 text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 lg:ml-64 flex flex-col w-full min-h-screen">
+<!-- Page Header -->
+<div class="px-margin-mobile md:px-margin-desktop py-8 border-b border-outline-variant bg-surface-container-lowest">
+<div class="max-w-max-width-content mx-auto flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary mb-2 hidden md:block">Compliance Roadmaps</h2>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary mb-2 md:hidden">Compliance Roadmaps</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+                        Track your saved research projects and certification progress across analyzed product categories.
+                    </p>
+</div>
+<div class="flex items-center gap-3 bg-surface-container-low p-1 rounded-lg border border-outline-variant">
+<button class="px-4 py-2 rounded font-label-md text-label-md bg-surface-container-lowest text-primary shadow-sm border border-outline-variant">
+                        All Projects
+                    </button>
+<button class="px-4 py-2 rounded font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors">
+                        Active Testing
+                    </button>
+<button class="px-4 py-2 rounded font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors">
+                        Granted
+                    </button>
+</div>
+</div>
+</div>
+<!-- Bento Grid Layout for High Information Density -->
+<div class="p-margin-mobile md:p-margin-desktop flex-1">
+<div class="max-w-max-width-content mx-auto grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-[minmax(180px,auto)]">
+<!-- Summary Card - Spans 4 columns on desktop -->
+<div class="md:col-span-4 bg-surface-container-lowest border border-border-subtle rounded-xl p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-primary/5 rounded-full group-hover:scale-150 transition-transform duration-500 ease-out"></div>
+<div>
+<div class="flex justify-between items-center mb-4 relative z-10">
+<h3 class="font-headline-md text-headline-md text-on-background">Industrial Motors</h3>
+<span class="material-symbols-outlined text-primary">precision_manufacturing</span>
+</div>
+<p class="font-code-sm text-code-sm text-on-surface-variant mb-2 font-mono bg-surface-container px-2 py-1 inline-block rounded">IS 12615:2018</p>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Three phase squirrel cage induction motors - energy efficiency classes and performance specification.</p>
+</div>
+<div class="mt-6 border-t border-outline-variant pt-4 relative z-10">
+<div class="flex justify-between items-center mb-2">
+<span class="font-label-md text-label-md text-bis-gold flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">engineering</span>
+                                Testing in Progress
+                            </span>
+<span class="font-label-md text-label-md text-on-background">65%</span>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-2">
+<div class="bg-bis-gold h-2 rounded-full" style="width: 65%"></div>
+</div>
+</div>
+</div>
+<!-- Deep Dive Card - Spans 8 columns on desktop -->
+<div class="md:col-span-8 bg-surface-container-lowest border border-border-subtle rounded-xl p-6 flex flex-col shadow-sm">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-background flex items-center gap-2">
+                                Smart Energy Meters
+                                <span class="bg-success-green/10 text-success-green px-2 py-1 rounded text-xs font-bold uppercase tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> Mandatory
+                                </span>
+</h3>
+<p class="font-code-sm text-code-sm text-on-surface-variant mt-1 font-mono">IS 16444 (Part 1):2015</p>
+</div>
+<button class="p-2 text-on-surface-variant hover:text-primary hover:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 flex-1">
+<div class="bg-surface-container-low p-4 rounded-lg border border-outline-variant flex flex-col justify-center items-center text-center">
+<span class="material-symbols-outlined text-success-green mb-2 text-3xl" style="font-variation-settings: 'FILL' 1;">task_alt</span>
+<span class="font-label-md text-label-md text-on-background">Phase 1</span>
+<span class="font-body-md text-body-md text-on-surface-variant text-sm">Documentation Ready</span>
+</div>
+<div class="bg-surface-container-low p-4 rounded-lg border border-outline-variant flex flex-col justify-center items-center text-center ring-2 ring-primary ring-offset-2">
+<span class="material-symbols-outlined text-primary mb-2 text-3xl" style="font-variation-settings: 'FILL' 1;">science</span>
+<span class="font-label-md text-label-md text-on-background">Phase 2</span>
+<span class="font-body-md text-body-md text-on-surface-variant text-sm text-primary font-medium">Lab Testing Active</span>
+</div>
+<div class="bg-surface p-4 rounded-lg border border-dashed border-outline-variant flex flex-col justify-center items-center text-center opacity-50">
+<span class="material-symbols-outlined text-outline mb-2 text-3xl">verified</span>
+<span class="font-label-md text-label-md text-on-background">Phase 3</span>
+<span class="font-body-md text-body-md text-on-surface-variant text-sm">BIS Audit</span>
+</div>
+</div>
+</div>
+<!-- List Card - Spans 12 columns -->
+<div class="md:col-span-12 bg-surface-container-lowest border border-border-subtle rounded-xl overflow-hidden shadow-sm">
+<div class="p-4 border-b border-outline-variant bg-surface-container-low flex justify-between items-center">
+<h4 class="font-headline-md text-headline-md text-on-background text-lg">Recent Compliance Scans</h4>
+<button class="font-label-md text-label-md text-primary hover:underline flex items-center gap-1">
+                            View All <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+<div class="divide-y divide-outline-variant">
+<div class="p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 hover:bg-surface transition-colors cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-surface-container flex items-center justify-center rounded-lg text-secondary group-hover:bg-secondary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined">kitchen</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-background">Domestic Water Purifiers</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="font-code-sm text-code-sm bg-surface-container px-1.5 py-0.5 rounded text-on-surface-variant">IS 16240:2015</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="font-body-md text-body-md text-xs text-on-surface-variant">Last checked: 2 days ago</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-3 w-full sm:w-auto justify-end">
+<span class="bg-success-green/10 text-success-green px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1 border border-success-green/20">
+<span class="material-symbols-outlined text-[14px]">military_tech</span> License Granted
+                                </span>
+<button class="w-8 h-8 rounded border border-outline-variant flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">download</span>
+</button>
+</div>
+</div>
+<div class="p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 hover:bg-surface transition-colors cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-surface-container flex items-center justify-center rounded-lg text-secondary group-hover:bg-secondary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined">toys</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-background">Electric Toys Safety</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="font-code-sm text-code-sm bg-surface-container px-1.5 py-0.5 rounded text-on-surface-variant">IS 15644:2006</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="font-body-md text-body-md text-xs text-on-surface-variant">Last checked: 1 week ago</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-3 w-full sm:w-auto justify-end">
+<span class="bg-alert-red/10 text-alert-red px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1 border border-alert-red/20">
+<span class="material-symbols-outlined text-[14px]">error</span> Action Required
+                                </span>
+<button class="w-8 h-8 rounded border border-outline-variant flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="w-full px-margin-desktop py-8 flex flex-col md:flex-row justify-between items-center gap-gutter border-t border-outline-variant dark:border-outline bg-surface-container-high dark:bg-surface-container-lowest mt-auto">
+<div class="font-label-md text-label-md font-bold text-primary">
+                ManakAI
+            </div>
+<div class="flex gap-4">
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-bis-gold dark:hover:text-tertiary-fixed transition-colors font-body-md text-body-md transition-opacity duration-200" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-bis-gold dark:hover:text-tertiary-fixed transition-colors font-body-md text-body-md transition-opacity duration-200" href="#">Terms of Service</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-bis-gold dark:hover:text-tertiary-fixed transition-colors font-body-md text-body-md transition-opacity duration-200" href="#">Accessibility</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-bis-gold dark:hover:text-tertiary-fixed transition-colors font-body-md text-body-md transition-opacity duration-200" href="#">Contact BIS</a>
+</div>
+<div class="font-body-md text-body-md text-on-surface-variant dark:text-surface-variant">
+                © 2024 Bureau of Indian Standards. All rights reserved.
+            </div>
+</footer>
+</main>
+</body><script src="../js/navigation.js"></script></html>

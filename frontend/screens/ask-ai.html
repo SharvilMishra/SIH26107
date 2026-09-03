@@ -1,0 +1,246 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>ManakAI - Evidence-First Chat Interface</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#f3f4f5",
+                        "bis-gold": "#B8860B",
+                        "on-secondary-fixed-variant": "#00429c",
+                        "tertiary-fixed-dim": "#88d982",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#ba1a1a",
+                        "background": "#f8f9fa",
+                        "surface-container-high": "#e7e8e9",
+                        "surface-dim": "#d9dadb",
+                        "surface-bright": "#f8f9fa",
+                        "on-tertiary-fixed-variant": "#005312",
+                        "secondary-fixed": "#d9e2ff",
+                        "primary-container": "#1a237e",
+                        "surface-tint": "#4c56af",
+                        "on-error-container": "#93000a",
+                        "on-surface": "#191c1d",
+                        "on-surface-variant": "#454652",
+                        "surface-variant": "#e1e3e4",
+                        "on-tertiary-container": "#5aa958",
+                        "outline": "#767683",
+                        "outline-variant": "#c6c5d4",
+                        "inverse-surface": "#2e3132",
+                        "surface-container": "#edeeef",
+                        "on-primary-fixed": "#000767",
+                        "inverse-primary": "#bdc2ff",
+                        "secondary-fixed-dim": "#b0c6ff",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "primary-fixed": "#e0e0ff",
+                        "on-primary-container": "#8690ee",
+                        "tertiary": "#002103",
+                        "text-secondary": "#424242",
+                        "success-green": "#2E7D32",
+                        "surface": "#f8f9fa",
+                        "text-primary": "#121212",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "alert-red": "#C62828",
+                        "primary": "#000666",
+                        "primary-fixed-dim": "#bdc2ff",
+                        "tertiary-container": "#003909",
+                        "on-tertiary-fixed": "#002204",
+                        "border-subtle": "#E0E0E0",
+                        "tertiary-fixed": "#a3f69c",
+                        "secondary": "#2b5bb5",
+                        "inverse-on-surface": "#f0f1f2",
+                        "error-container": "#ffdad6",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-secondary-container": "#00337c",
+                        "on-background": "#191c1d",
+                        "on-secondary-fixed": "#001945",
+                        "on-primary-fixed-variant": "#343d96",
+                        "secondary-container": "#759efd"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "max-width-content": "1200px",
+                        "unit": "4px",
+                        "touch-target": "48px",
+                        "margin-desktop": "48px",
+                        "margin-mobile": "16px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "code-sm": ["monospace"],
+                        "headline-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "code-sm": ["13px", { "lineHeight": "18px", "fontWeight": "500" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .source-drawer {
+            transition: transform 0.3s ease-in-out;
+        }
+        .source-drawer.open {
+            transform: translateX(0);
+        }
+        .source-drawer.closed {
+            transform: translateX(100%);
+        }
+        @media (min-width: 1024px) {
+            .source-drawer.closed {
+                transform: translateX(0);
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md min-h-screen flex flex-col antialiased">
+<!-- TopNavBar -->
+<header class="bg-surface border-b border-outline-variant full-width top-0 z-50 sticky">
+<div class="flex justify-between items-center w-full px-margin-desktop max-w-max-width-content mx-auto h-touch-target">
+<div class="flex items-center gap-gutter">
+<span class="text-headline-md font-headline-md font-bold text-primary tracking-tight">ManakAI</span>
+</div>
+<nav class="hidden md:flex gap-gutter items-center">
+<a class="text-on-surface-variant hover:text-secondary transition-colors cursor-pointer active:scale-95 transition-transform" href="#">Home</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 cursor-pointer active:scale-95 transition-transform" href="#">Ask AI</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors cursor-pointer active:scale-95 transition-transform" href="#">Verify</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors cursor-pointer active:scale-95 transition-transform" href="#">Standards</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors cursor-pointer active:scale-95 transition-transform" href="#">Complaints</a>
+</nav>
+<div class="flex items-center gap-unit">
+<button class="px-4 h-touch-target rounded-full hover:bg-surface-container transition-colors font-label-md text-label-md text-primary flex items-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">language</span>
+                    Language
+                </button>
+<button class="px-4 h-touch-target rounded-full border border-secondary text-secondary hover:bg-secondary-fixed transition-colors font-label-md text-label-md flex items-center gap-2">
+                    Switch Mode
+                </button>
+</div>
+</div>
+</header>
+<div class="flex-1 flex overflow-hidden max-w-max-width-content mx-auto w-full relative">
+<!-- Main Chat Area -->
+<main class="flex-1 flex flex-col h-[calc(100vh-48px)] overflow-hidden bg-surface relative">
+<!-- Chat History -->
+<div class="flex-1 overflow-y-auto p-margin-desktop pb-32 space-y-8" id="chat-container">
+<!-- Populated at runtime by js/chat.js. Empty state: -->
+<div class="flex flex-col items-center justify-center text-center gap-2 h-full text-on-surface-variant py-16" id="chat-empty-state">
+<span class="material-symbols-outlined text-4xl">smart_toy</span>
+<p class="font-body-md text-body-md max-w-md">Ask about BIS standards, regulations, or compliance — answers come straight from the ManakAI backend.</p>
+</div>
+</div>
+<!-- Input Area -->
+<div class="absolute bottom-0 left-0 w-full p-margin-mobile md:p-margin-desktop bg-gradient-to-t from-surface via-surface to-transparent">
+<div class="max-w-3xl mx-auto relative bg-surface-container-lowest rounded-full border border-border-subtle shadow-[0_4px_12px_rgba(0,0,0,0.05)] flex items-center p-2 focus-within:border-secondary focus-within:ring-1 focus-within:ring-secondary transition-all">
+<button class="w-12 h-12 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-surface-container">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">attach_file</span>
+</button>
+<input class="flex-1 bg-transparent border-none focus:ring-0 font-body-md text-body-md text-on-surface px-4 h-12 placeholder-on-surface-variant" id="chat-input" placeholder="Ask about BIS standards, regulations, or compliance..." type="text">
+<button class="w-12 h-12 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-surface-container">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">mic</span>
+</button>
+<button class="w-12 h-12 flex items-center justify-center bg-primary text-white rounded-full hover:bg-on-primary-fixed transition-colors ml-2 shadow-sm" id="chat-send">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">send</span>
+</button>
+</div>
+<div class="text-center mt-2">
+<p class="font-label-md text-label-md text-on-surface-variant text-[12px]">ManakAI can make mistakes. Verify critical regulatory information.</p>
+</div>
+</div>
+</main>
+<!-- Source Drawer -->
+<aside class="source-drawer closed fixed lg:static inset-y-0 right-0 w-full sm:w-[400px] lg:w-[400px] bg-surface-container-lowest border-l border-border-subtle flex flex-col z-40 lg:flex mt-[48px] lg:mt-0 h-[calc(100vh-48px)] lg:h-auto shadow-2xl lg:shadow-none" id="source-drawer">
+<div class="h-touch-target border-b border-border-subtle flex items-center justify-between px-6 bg-surface">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">plagiarism</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Evidence Trail</h3>
+</div>
+<button class="w-10 h-10 flex items-center justify-center text-on-surface-variant hover:bg-surface-container rounded-full lg:hidden" onclick="toggleDrawer()">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto p-6 space-y-6">
+<!-- Document Meta -->
+<div class="space-y-4">
+<div class="flex justify-between items-start">
+<span class="px-2 py-1 bg-primary-container text-on-primary-container rounded font-code-sm text-code-sm font-bold">IS 302-2-3 : 2007</span>
+<span class="px-2 py-1 bg-surface-container-high text-on-surface-variant rounded font-label-md text-[12px]">Page 12 of 45</span>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-surface text-[18px] leading-tight">Safety of Household and Similar Electrical Appliances</h4>
+<p class="font-body-md text-body-md text-on-surface-variant text-[14px]">Part 2-3: Particular Requirements for Electric Irons</p>
+</div>
+<hr class="border-border-subtle">
+<!-- Stepper / Breadcrumb -->
+<div class="space-y-3">
+<h5 class="font-label-md text-label-md text-on-surface font-bold uppercase tracking-wider text-[12px]">Clause Path</h5>
+<div class="flex items-center gap-2 font-code-sm text-code-sm text-on-surface-variant">
+<span>Section 4</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-primary font-bold">Clause 4.2.1</span>
+</div>
+</div>
+<!-- Text Snippet -->
+<div class="bg-surface rounded-xl border border-outline-variant p-5 relative">
+<div class="absolute top-0 right-0 bg-secondary text-white px-3 py-1 rounded-bl-lg rounded-tr-lg font-label-md text-[12px] flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[14px]">format_quote</span> Exact Match
+                    </div>
+<h5 class="font-label-md text-label-md font-bold text-on-surface mb-3 mt-2">Heating and Temperature Rise</h5>
+<p class="font-body-md text-body-md text-on-surface leading-relaxed text-[15px] font-medium bg-surface-container px-2 py-1 rounded border-l-4 border-bis-gold">
+                        "During normal operation, the temperature rise of the handle or gripping areas shall not exceed 35°C for non-metallic parts and 25°C for metallic parts when tested under continuous load."
+                    </p>
+<p class="font-body-md text-body-md text-on-surface leading-relaxed text-[15px] mt-3">
+                        The appliance shall be constructed so that under normal conditions of use, there is no risk of fire, mechanical damage impairing safety, or electric shock.
+                    </p>
+</div>
+<!-- Action -->
+<div class="pt-4">
+<button class="w-full h-touch-target border border-primary text-primary rounded-lg font-label-md text-label-md hover:bg-primary-fixed transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">picture_as_pdf</span>
+                        View Full Standard PDF
+                    </button>
+</div>
+</div>
+</aside>
+</div>
+<script>
+        function toggleDrawer() {
+            const drawer = document.getElementById('source-drawer');
+            if (drawer.classList.contains('closed')) {
+                drawer.classList.remove('closed');
+                drawer.classList.add('open');
+            } else {
+                drawer.classList.remove('open');
+                drawer.classList.add('closed');
+            }
+        }
+    </script>
+</body><script src="../js/navigation.js"></script><script src="../js/config.js"></script><script src="../js/chat.js"></script></html>

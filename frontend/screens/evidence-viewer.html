@@ -1,0 +1,339 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>ManakAI - Source Drawer</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-container": "#8690ee",
+                        "outline": "#767683",
+                        "secondary": "#2b5bb5",
+                        "on-secondary-fixed-variant": "#00429c",
+                        "alert-red": "#C62828",
+                        "on-primary-fixed": "#000767",
+                        "tertiary-container": "#003909",
+                        "inverse-surface": "#2e3132",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#4c56af",
+                        "tertiary": "#002103",
+                        "error": "#ba1a1a",
+                        "primary-container": "#1a237e",
+                        "on-secondary-container": "#00337c",
+                        "on-secondary-fixed": "#001945",
+                        "on-tertiary-container": "#5aa958",
+                        "bis-gold": "#B8860B",
+                        "surface-variant": "#e1e3e4",
+                        "on-tertiary-fixed": "#002204",
+                        "surface-container-high": "#e7e8e9",
+                        "tertiary-fixed": "#a3f69c",
+                        "on-background": "#191c1d",
+                        "on-primary-fixed-variant": "#343d96",
+                        "text-primary": "#121212",
+                        "on-secondary": "#ffffff",
+                        "outline-variant": "#c6c5d4",
+                        "inverse-on-surface": "#f0f1f2",
+                        "surface-container-low": "#f3f4f5",
+                        "primary-fixed-dim": "#bdc2ff",
+                        "background": "#f8f9fa",
+                        "text-secondary": "#424242",
+                        "border-subtle": "#E0E0E0",
+                        "on-surface": "#191c1d",
+                        "surface": "#f8f9fa",
+                        "secondary-fixed-dim": "#b0c6ff",
+                        "primary-fixed": "#e0e0ff",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#bdc2ff",
+                        "primary": "#000666",
+                        "on-tertiary-fixed-variant": "#005312",
+                        "tertiary-fixed-dim": "#88d982",
+                        "surface-container": "#edeeef",
+                        "secondary-fixed": "#d9e2ff",
+                        "surface-bright": "#f8f9fa",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-dim": "#d9dadb",
+                        "on-tertiary": "#ffffff",
+                        "success-green": "#2E7D32",
+                        "on-surface-variant": "#454652",
+                        "secondary-container": "#759efd",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "gutter": "16px",
+                        "unit": "4px",
+                        "margin-desktop": "48px",
+                        "touch-target": "48px",
+                        "max-width-content": "1200px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "code-sm": ["monospace"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "code-sm": ["13px", { "lineHeight": "18px", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .drawer-slide-in {
+            animation: slideIn 0.3s ease-out forwards;
+        }
+        @keyframes slideIn {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+        .highlight-pulse {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { background-color: rgba(255, 218, 214, 0.4); }
+            50% { background-color: rgba(255, 218, 214, 0.8); }
+            100% { background-color: rgba(255, 218, 214, 0.4); }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col antialiased">
+<!-- TopNavBar -->
+<nav class="bg-surface dark:bg-background border-b border-outline-variant dark:border-outline top-0 z-50 w-full">
+<div class="flex justify-between items-center w-full px-margin-desktop max-w-max-width-content mx-auto h-touch-target">
+<div class="flex items-center gap-4">
+<span class="text-headline-md font-headline-md font-bold text-primary dark:text-primary-fixed tracking-tight">ManakAI</span>
+</div>
+<div class="hidden md:flex items-center gap-6">
+<a class="text-on-surface-variant dark:text-surface-variant font-label-md text-label-md hover:text-secondary dark:hover:text-secondary-fixed transition-colors" href="#">Home</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-label-md text-label-md hover:text-secondary dark:hover:text-secondary-fixed transition-colors" href="#">Ask AI</a>
+<a class="text-primary dark:text-primary-fixed-dim font-bold border-b-2 border-primary dark:border-primary-fixed-dim pb-1 font-label-md text-label-md" href="#">Verify</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-label-md text-label-md hover:text-secondary dark:hover:text-secondary-fixed transition-colors" href="#">Standards</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-label-md text-label-md hover:text-secondary dark:hover:text-secondary-fixed transition-colors" href="#">Complaints</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="font-label-md text-label-md text-on-surface-variant dark:text-surface-variant flex items-center gap-2 cursor-pointer active:scale-95 transition-transform hover:text-secondary">
+<span class="material-symbols-outlined text-[20px]" data-icon="language">language</span> Language
+                </button>
+<div class="h-6 w-[1px] bg-outline-variant"></div>
+<button class="font-label-md text-label-md text-on-surface-variant dark:text-surface-variant flex items-center gap-2 cursor-pointer active:scale-95 transition-transform hover:text-secondary">
+<span class="material-symbols-outlined text-[20px]" data-icon="dark_mode">dark_mode</span> Switch Mode
+                </button>
+</div>
+</div>
+</nav>
+<div class="flex flex-1 overflow-hidden">
+<!-- Main Content Area (Simulated AI Chat/Response) -->
+<main class="flex-1 p-margin-desktop overflow-y-auto bg-surface-container-low flex flex-col items-center">
+<div class="w-full max-w-3xl space-y-6">
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-border-subtle shadow-sm flex gap-4">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-primary-container" data-icon="person">person</span>
+</div>
+<div>
+<p class="font-body-md text-body-md text-on-surface">What are the specific grounding requirements for residential electrical installations according to IS 732?</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-border-subtle shadow-sm flex gap-4 relative">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-secondary-container" data-icon="smart_toy">smart_toy</span>
+</div>
+<div class="space-y-4 w-full">
+<div class="flex items-center gap-2">
+<span class="bg-success-green/10 text-success-green px-2 py-1 rounded font-label-md text-[12px] flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="verified">verified</span> Verified Response
+                             </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface">According to IS 732 (Code of Practice for Electrical Wiring Installations), the grounding requirements for residential installations stipulate that all exposed conductive parts of the electrical equipment must be connected to the protective earthing terminal.</p>
+<p class="font-body-md text-body-md text-on-surface">Specifically, the resistance of the earth continuity conductor from the main earthing terminal to any point in the installation should not exceed 1 ohm.</p>
+<!-- Evidence Card Trigger -->
+<button class="mt-4 w-full text-left bg-surface-container hover:bg-surface-container-high transition-colors p-4 rounded-lg border border-border-subtle flex justify-between items-center group cursor-pointer active:scale-[0.99]" id="open-drawer-btn">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="font-label-md text-label-md text-secondary">IS 732:2019</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="font-body-md text-[13px] text-on-surface-variant">Clause 5.4.2</span>
+</div>
+<p class="font-body-md text-[14px] text-on-surface-variant truncate max-w-md">"The resistance of the earth continuity conductor..."</p>
+</div>
+<div class="flex items-center text-primary group-hover:text-secondary transition-colors">
+<span class="font-label-md text-[13px] mr-2">View Source</span>
+<span class="material-symbols-outlined text-[20px]" data-icon="chevron_right">chevron_right</span>
+</div>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Source Drawer (Right Panel) -->
+<aside class="w-[480px] bg-surface-container-lowest border-l border-border-subtle flex flex-col shrink-0 drawer-slide-in shadow-[-4px_0_24px_rgba(0,0,0,0.05)] z-40 hidden" id="source-drawer">
+<!-- Drawer Header -->
+<div class="h-[72px] border-b border-border-subtle px-6 flex items-center justify-between bg-surface-bright">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="description">description</span>
+</div>
+<div>
+<h2 class="font-headline-md text-[18px] font-semibold text-on-surface leading-tight">Evidence Trail</h2>
+<p class="font-body-md text-[12px] text-on-surface-variant">Source Verification</p>
+</div>
+</div>
+<button class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-surface-container-high transition-colors text-on-surface-variant active:scale-95" id="close-drawer-btn">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+<!-- Drawer Metadata / Stepper -->
+<div class="p-6 border-b border-border-subtle bg-surface-container-low space-y-4">
+<div class="flex items-start gap-3">
+<div class="flex flex-col items-center mt-1">
+<div class="w-3 h-3 rounded-full bg-secondary"></div>
+<div class="w-px h-10 bg-border-subtle my-1"></div>
+<div class="w-3 h-3 rounded-full bg-outline-variant border-2 border-surface-container-lowest"></div>
+</div>
+<div class="flex-1 space-y-4">
+<div>
+<div class="flex justify-between items-center">
+<span class="font-label-md text-label-md text-on-surface">Standard Document</span>
+<span class="bg-bis-gold/10 text-bis-gold px-2 py-0.5 rounded font-label-md text-[11px] uppercase tracking-wider">Mandatory</span>
+</div>
+<p class="font-headline-md text-[16px] font-semibold text-secondary mt-1">IS 732:2019</p>
+<p class="font-body-md text-[13px] text-on-surface-variant leading-snug">Code of Practice for Electrical Wiring Installations</p>
+</div>
+<div>
+<span class="font-label-md text-label-md text-on-surface">Specific Location</span>
+<div class="flex items-center gap-4 mt-1">
+<div class="bg-surface-container px-3 py-1.5 rounded-lg border border-border-subtle">
+<span class="block font-body-md text-[11px] text-on-surface-variant">Clause</span>
+<span class="block font-code-sm text-code-sm text-on-surface">5.4.2</span>
+</div>
+<div class="bg-surface-container px-3 py-1.5 rounded-lg border border-border-subtle">
+<span class="block font-body-md text-[11px] text-on-surface-variant">Page</span>
+<span class="block font-code-sm text-code-sm text-on-surface">24</span>
+</div>
+<div class="bg-surface-container px-3 py-1.5 rounded-lg border border-border-subtle">
+<span class="block font-body-md text-[11px] text-on-surface-variant">Effective</span>
+<span class="block font-code-sm text-code-sm text-on-surface">12 Oct 2019</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- PDF Viewer Simulation -->
+<div class="flex-1 overflow-y-auto bg-[#E5E7EB] p-6 relative">
+<!-- Toolbar -->
+<div class="absolute top-8 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface px-4 py-2 rounded-full shadow-lg flex items-center gap-4 z-10 backdrop-blur-sm bg-opacity-90">
+<button class="hover:text-primary-fixed-dim transition-colors"><span class="material-symbols-outlined text-[18px]" data-icon="zoom_out">zoom_out</span></button>
+<span class="font-label-md text-[12px]">100%</span>
+<button class="hover:text-primary-fixed-dim transition-colors"><span class="material-symbols-outlined text-[18px]" data-icon="zoom_in">zoom_in</span></button>
+<div class="w-px h-4 bg-outline"></div>
+<span class="font-label-md text-[12px]">Page 24 of 156</span>
+</div>
+<!-- PDF Page Render -->
+<div class="bg-white mx-auto shadow-sm border border-border-subtle w-full min-h-[800px] mt-12 p-10 font-serif relative">
+<!-- Document Header -->
+<div class="flex justify-between border-b-2 border-black pb-2 mb-8">
+<span class="font-bold text-[14px]">IS 732 : 2019</span>
+<span class="text-[14px]">BUREAU OF INDIAN STANDARDS</span>
+</div>
+<!-- Content -->
+<div class="space-y-6 text-[#1A1A1A] leading-relaxed text-[14px]">
+<div>
+<h3 class="font-bold mb-2">5.4 Earthing Arrangements</h3>
+<p class="mb-2">5.4.1 Every installation shall be provided with an earthing terminal to which all the protective conductors of the installation shall be connected.</p>
+<!-- Highlighted Clause -->
+<div class="relative -mx-2 px-2 py-1 rounded bg-error-container/40 border border-error-container highlight-pulse">
+<div class="absolute -left-6 top-1/2 -translate-y-1/2 text-error">
+<span class="material-symbols-outlined text-[20px]" data-icon="arrow_right_alt">arrow_right_alt</span>
+</div>
+<h4 class="font-bold inline">5.4.2 Earth Continuity Conductor Resistance</h4>
+<p class="mt-1">The resistance of the earth continuity conductor from the main earthing terminal to any point in the installation, including the connection to the exposed conductive part, <strong class="bg-bis-gold/30 px-1">shall not exceed 1 ohm</strong>. This ensures rapid operation of protective devices in the event of a fault.</p>
+</div>
+</div>
+<div>
+<h3 class="font-bold mb-2">5.5 Protective Devices</h3>
+<p class="mb-2">5.5.1 The characteristics of the protective devices for automatic disconnection of supply shall be selected to satisfy the conditions of the protective measure used.</p>
+<p class="mb-2">5.5.2 For TT systems, residual current devices (RCDs) shall be used for fault protection. Overcurrent protective devices may be used for fault protection provided that a suitably low value of fault loop impedance is permanently and reliably assured.</p>
+</div>
+<div class="opacity-50">
+<!-- Filler text to simulate more document -->
+<p class="mb-2">5.6 Equipotential Bonding</p>
+<p class="mb-2">5.6.1 Main equipotential bonding conductors shall connect the main earthing terminal to the following extraneous-conductive-parts:
+                                <br>a) metallic water service pipes;
+                                <br>b) metallic gas installation pipes;
+                                <br>c) other metallic service pipes and ducting;
+                                <br>d) metallic central heating and air-conditioning systems;
+                                <br>e) exposed metallic structural parts of the building.
+                            </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Drawer Footer Actions -->
+<div class="p-4 border-t border-border-subtle bg-surface flex justify-end gap-3">
+<button class="px-4 py-2 border border-secondary text-secondary rounded-lg font-label-md text-label-md hover:bg-secondary/5 transition-colors h-[48px] flex items-center justify-center">
+<span class="material-symbols-outlined mr-2 text-[18px]" data-icon="download">download</span> Download PDF
+                </button>
+<button class="px-6 py-2 bg-primary text-on-primary rounded-lg font-label-md text-label-md hover:bg-primary/90 transition-colors h-[48px]">
+                    Copy Citation
+                </button>
+</div>
+</aside>
+</div>
+<!-- Footer -->
+<footer class="w-full px-margin-desktop py-margin-mobile flex flex-col md:flex-row justify-between items-center gap-gutter bg-surface-container-high dark:bg-surface-container-lowest border-t border-outline-variant dark:border-outline py-8">
+<div class="font-label-md text-label-md font-bold text-primary">ManakAI</div>
+<div class="text-on-surface-variant dark:text-surface-variant font-body-md text-body-md">
+            © 2024 Bureau of Indian Standards. All rights reserved.
+        </div>
+<div class="flex gap-4">
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-bis-gold dark:hover:text-tertiary-fixed transition-colors font-body-md text-body-md" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-bis-gold dark:hover:text-tertiary-fixed transition-colors font-body-md text-body-md" href="#">Terms of Service</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-bis-gold dark:hover:text-tertiary-fixed transition-colors font-body-md text-body-md" href="#">Accessibility</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-bis-gold dark:hover:text-tertiary-fixed transition-colors font-body-md text-body-md" href="#">Contact BIS</a>
+</div>
+</footer>
+<script>
+        const drawer = document.getElementById('source-drawer');
+        const openBtn = document.getElementById('open-drawer-btn');
+        const closeBtn = document.getElementById('close-drawer-btn');
+
+        // Initial state for demonstration purposes
+        setTimeout(() => {
+            drawer.classList.remove('hidden');
+        }, 500);
+
+        openBtn.addEventListener('click', () => {
+            drawer.classList.remove('hidden');
+        });
+
+        closeBtn.addEventListener('click', () => {
+            drawer.classList.add('hidden');
+        });
+    </script>
+</body><script src="../js/navigation.js"></script></html>

@@ -1,0 +1,304 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>ManakAI - Complaints &amp; Grievance</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#c6c5d4",
+                        "on-background": "#191c1d",
+                        "error": "#ba1a1a",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-surface-variant": "#454652",
+                        "surface-variant": "#e1e3e4",
+                        "secondary": "#2b5bb5",
+                        "error-container": "#ffdad6",
+                        "primary-container": "#1a237e",
+                        "tertiary": "#002103",
+                        "on-surface": "#191c1d",
+                        "primary-fixed-dim": "#bdc2ff",
+                        "background": "#f8f9fa",
+                        "on-secondary-fixed": "#001945",
+                        "surface-dim": "#d9dadb",
+                        "surface-container-high": "#e7e8e9",
+                        "primary": "#000666",
+                        "on-tertiary-fixed": "#002204",
+                        "alert-red": "#C62828",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed-variant": "#00429c",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed-variant": "#005312",
+                        "on-primary-container": "#8690ee",
+                        "inverse-on-surface": "#f0f1f2",
+                        "border-subtle": "#E0E0E0",
+                        "bis-gold": "#B8860B",
+                        "tertiary-container": "#003909",
+                        "surface-container": "#edeeef",
+                        "surface-tint": "#4c56af",
+                        "tertiary-fixed-dim": "#88d982",
+                        "secondary-fixed-dim": "#b0c6ff",
+                        "on-tertiary-container": "#5aa958",
+                        "on-primary-fixed": "#000767",
+                        "surface": "#f8f9fa",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#a3f69c",
+                        "text-primary": "#121212",
+                        "on-secondary-container": "#00337c",
+                        "outline": "#767683",
+                        "surface-container-low": "#f3f4f5",
+                        "inverse-primary": "#bdc2ff",
+                        "surface-bright": "#f8f9fa",
+                        "inverse-surface": "#2e3132",
+                        "on-secondary": "#ffffff",
+                        "secondary-container": "#759efd",
+                        "on-primary-fixed-variant": "#343d96",
+                        "success-green": "#2E7D32",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed": "#d9e2ff",
+                        "text-secondary": "#424242",
+                        "primary-fixed": "#e0e0ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "margin-desktop": "48px",
+                        "gutter": "16px",
+                        "max-width-content": "1200px",
+                        "touch-target": "48px",
+                        "unit": "4px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Inter", "sans-serif"],
+                        "headline-md": ["Inter", "sans-serif"],
+                        "body-md": ["Inter", "sans-serif"],
+                        "label-md": ["Inter", "sans-serif"],
+                        "body-lg": ["Inter", "sans-serif"],
+                        "headline-lg-mobile": ["Inter", "sans-serif"],
+                        "code-sm": ["monospace"],
+                        "headline-lg": ["Inter", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "code-sm": ["13px", { "lineHeight": "18px", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for dossiers */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #c6c5d4;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<nav class="bg-surface border-b border-outline-variant flat no shadows w-full sticky top-0 z-50">
+<div class="flex justify-between items-center w-full px-margin-desktop max-w-max-width-content mx-auto h-touch-target">
+<div class="flex items-center gap-6">
+<div class="text-headline-md font-headline-md font-bold text-primary">ManakAI</div>
+<div class="hidden md:flex items-center h-full gap-6">
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-secondary transition-colors cursor-pointer active:scale-95 transition-transform flex items-center h-full" href="#">Home</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-secondary transition-colors cursor-pointer active:scale-95 transition-transform flex items-center h-full" href="#">Ask AI</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-secondary transition-colors cursor-pointer active:scale-95 transition-transform flex items-center h-full" href="#">Verify</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-secondary transition-colors cursor-pointer active:scale-95 transition-transform flex items-center h-full" href="#">Standards</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-body-md text-body-md flex items-center h-full cursor-pointer active:scale-95 transition-transform" href="#">Complaints</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-lg text-body-md w-64 focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary" placeholder="Search Standards..." type="text">
+</div>
+<button class="text-on-surface-variant hover:text-secondary transition-colors font-label-md text-label-md">Language</button>
+<button class="text-on-surface-variant hover:text-secondary transition-colors font-label-md text-label-md">Switch Mode</button>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow w-full px-margin-mobile md:px-margin-desktop py-8 max-w-max-width-content mx-auto flex gap-gutter flex-col lg:flex-row">
+<!-- Left Column: AI Form -->
+<div class="flex-grow flex flex-col gap-6 lg:w-2/3">
+<!-- Page Header -->
+<div class="mb-4">
+<h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-2">File a Grievance</h1>
+<p class="text-on-surface-variant font-body-lg text-body-lg">Our AI assistant will guide you through the process of filing an official complaint regarding BIS standards.</p>
+</div>
+<!-- AI Guide Bubble -->
+<div class="bg-primary-fixed rounded-xl p-4 flex gap-4 border border-outline-variant">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-on-primary">robot_2</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-primary mb-1">ManakAI Assistant</p>
+<p class="text-body-md text-on-surface">Hello. I am here to help you register a grievance. Let's start with the nature of the issue. Please select the category that best describes your complaint below.</p>
+</div>
+</div>
+<!-- Form Area (Step 1) -->
+<div class="bg-surface-container-lowest rounded-xl border border-border-subtle p-6 shadow-sm">
+<!-- Stepper -->
+<div class="flex items-center justify-between mb-8 relative">
+<div class="absolute left-0 top-1/2 -translate-y-1/2 w-full h-1 bg-surface-container-high -z-10"></div>
+<div class="absolute left-0 top-1/2 -translate-y-1/2 w-1/3 h-1 bg-secondary -z-10"></div>
+<div class="flex flex-col items-center">
+<div class="w-8 h-8 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-label-md text-label-md mb-2">1</div>
+<span class="font-label-md text-label-md text-secondary">Issue Type</span>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center font-label-md text-label-md mb-2 border border-border-subtle">2</div>
+<span class="font-label-md text-label-md text-on-surface-variant">Details</span>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center font-label-md text-label-md mb-2 border border-border-subtle">3</div>
+<span class="font-label-md text-label-md text-on-surface-variant">Evidence</span>
+</div>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-background mb-4">Step 1: Select Grievance Type</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<!-- Option 1 -->
+<label class="cursor-pointer">
+<input checked="" class="peer sr-only" name="grievance_type" type="radio">
+<div class="rounded-lg border-2 border-outline-variant p-4 peer-checked:border-secondary peer-checked:bg-secondary-fixed hover:bg-surface-container-low transition-colors h-full flex flex-col items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-3xl">verified_user</span>
+<h3 class="font-label-md text-label-md text-on-background">Counterfeit ISI Mark</h3>
+<p class="text-body-md text-on-surface-variant text-sm">Product falsely claiming BIS certification using fake ISI logos.</p>
+</div>
+</label>
+<!-- Option 2 -->
+<label class="cursor-pointer">
+<input class="peer sr-only" name="grievance_type" type="radio">
+<div class="rounded-lg border-2 border-outline-variant p-4 peer-checked:border-secondary peer-checked:bg-secondary-fixed hover:bg-surface-container-low transition-colors h-full flex flex-col items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-3xl">diamond</span>
+<h3 class="font-label-md text-label-md text-on-background">Fake HUID / Hallmark</h3>
+<p class="text-body-md text-on-surface-variant text-sm">Jewelry with non-verifiable or manipulated HUID codes.</p>
+</div>
+</label>
+<!-- Option 3 -->
+<label class="cursor-pointer">
+<input class="peer sr-only" name="grievance_type" type="radio">
+<div class="rounded-lg border-2 border-outline-variant p-4 peer-checked:border-secondary peer-checked:bg-secondary-fixed hover:bg-surface-container-low transition-colors h-full flex flex-col items-start gap-2">
+<span class="material-symbols-outlined text-alert-red text-3xl">warning</span>
+<h3 class="font-label-md text-label-md text-on-background">Poor Quality (ISI Marked)</h3>
+<p class="text-body-md text-on-surface-variant text-sm">Genuine ISI product failing to meet expected safety/quality standards.</p>
+</div>
+</label>
+<!-- Option 4 -->
+<label class="cursor-pointer">
+<input class="peer sr-only" name="grievance_type" type="radio">
+<div class="rounded-lg border-2 border-outline-variant p-4 peer-checked:border-secondary peer-checked:bg-secondary-fixed hover:bg-surface-container-low transition-colors h-full flex flex-col items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-3xl">other_admission</span>
+<h3 class="font-label-md text-label-md text-on-background">Other Violation</h3>
+<p class="text-body-md text-on-surface-variant text-sm">Misuse of BIS name, unauthorized manufacturing, etc.</p>
+</div>
+</label>
+</div>
+<div class="mt-8 flex justify-end">
+<button class="bg-primary text-on-primary font-label-md text-label-md px-6 py-3 rounded h-touch-target flex items-center justify-center hover:bg-primary-container transition-colors shadow-sm">
+                        Continue to Details
+                        <span class="material-symbols-outlined ml-2 text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Right Column: Grievance Dossier Preview -->
+<div class="lg:w-1/3 flex-shrink-0">
+<div class="sticky top-24 bg-surface-container-lowest rounded-xl border border-border-subtle overflow-hidden flex flex-col max-h-[calc(100vh-120px)] shadow-sm">
+<div class="bg-surface-container-low border-b border-border-subtle p-4 flex justify-between items-center">
+<h3 class="font-headline-md text-body-lg font-semibold text-primary flex items-center gap-2">
+<span class="material-symbols-outlined">description</span>
+                        Grievance Dossier
+                    </h3>
+<span class="bg-surface-variant text-on-surface-variant px-2 py-1 rounded text-xs font-label-md uppercase tracking-wide">Draft</span>
+</div>
+<div class="p-4 overflow-y-auto flex-grow bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIiAvPgo8cmVjdCB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSIjZjBmMCIgLz4KPC9zdmc+')]">
+<!-- Section: Meta -->
+<div class="mb-6 pb-4 border-b border-border-subtle border-dashed">
+<div class="grid grid-cols-2 gap-y-2 text-sm">
+<div class="text-on-surface-variant font-label-md">Status:</div>
+<div class="text-alert-red font-label-md flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-alert-red"></span> Pending Submission</div>
+<div class="text-on-surface-variant font-label-md">Date:</div>
+<div class="text-on-background font-body-md">24 Oct 2024</div>
+<div class="text-on-surface-variant font-label-md">Reference:</div>
+<div class="text-on-background font-code-sm bg-surface-container px-1 rounded inline-block">GRV-***-****</div>
+</div>
+</div>
+<!-- Section: Classification -->
+<div class="mb-6">
+<h4 class="text-xs uppercase font-bold text-on-surface-variant tracking-wider mb-2">1. Classification</h4>
+<div class="bg-surface rounded border border-border-subtle p-3">
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-sm mt-0.5">verified_user</span>
+<div>
+<div class="font-label-md text-label-md text-on-background">Counterfeit ISI Mark</div>
+<div class="text-xs text-on-surface-variant mt-1">Identified via user selection. Proceeding under Section 11 of BIS Act 2016.</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Section: Details (Pending) -->
+<div class="mb-6 opacity-50">
+<h4 class="text-xs uppercase font-bold text-on-surface-variant tracking-wider mb-2">2. Product Details</h4>
+<div class="bg-surface rounded border border-border-subtle border-dashed p-3 text-center py-6">
+<span class="material-symbols-outlined text-outline-variant text-3xl mb-1">inventory_2</span>
+<p class="text-xs text-on-surface-variant">Awaiting input in Step 2</p>
+</div>
+</div>
+<!-- Section: Evidence (Pending) -->
+<div class="opacity-50">
+<h4 class="text-xs uppercase font-bold text-on-surface-variant tracking-wider mb-2">3. Evidence</h4>
+<div class="bg-surface rounded border border-border-subtle border-dashed p-3 text-center py-6">
+<span class="material-symbols-outlined text-outline-variant text-3xl mb-1">add_a_photo</span>
+<p class="text-xs text-on-surface-variant">Awaiting uploads in Step 3</p>
+</div>
+</div>
+</div>
+<div class="bg-surface-container p-3 text-xs text-center text-on-surface-variant border-t border-border-subtle">
+                    This dossier is automatically compiled and will be encrypted upon submission.
+                </div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-high py-8 border-t border-outline-variant w-full mt-auto">
+<div class="w-full px-margin-desktop py-margin-mobile flex flex-col md:flex-row justify-between items-center gap-gutter max-w-max-width-content mx-auto">
+<div class="font-label-md text-label-md font-bold text-primary">ManakAI</div>
+<div class="font-body-md text-body-md text-on-surface-variant">© 2024 Bureau of Indian Standards. All rights reserved.</div>
+<div class="flex gap-4">
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-bis-gold transition-colors" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-bis-gold transition-colors" href="#">Terms of Service</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-bis-gold transition-colors" href="#">Accessibility</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-bis-gold transition-colors" href="#">Contact BIS</a>
+</div>
+</div>
+</footer>
+</body><script src="../js/navigation.js"></script></html>

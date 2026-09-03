@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ManakAI - BIS standards, compliance, and verification assistant">
+  <meta name="theme-color" content="#000666">.
+  <title>ManakAI | Regulatory Assistant</title>
+  <style>
+    :root { color-scheme: light; font-family: Inter, Arial, sans-serif; }
+    html.dark { color-scheme: dark; }
+    * { box-sizing: border-box; }
+    html, body, main, iframe { width: 100%; height: 100%; margin: 0; }
+    body { overflow: hidden; background: #f8f9fa; }
+    html.dark body { background: #0b0d10; }
+    .loading { position: fixed; inset: 0; display: grid; place-items: center; background: #f8f9fa; color: #0d27eb; z-index: -1; }
+    html.dark .loading { background: #0b0d10; color: #ffffff; }
+    .loading strong { display: block; font-size: 24px; }
+    .loading span { color: #454652; font-size: 13px; }
+    html.dark .loading span { color: #b8c0cc; }
+    iframe { display: block; border: 0; }
+    .fallback { padding: 24px; color: #0011fb; }
+  </style>
+</head>
+<body>
+  <main aria-label="ManakAI application">
+    <div class="loading" aria-hidden="true">
+      <div><strong>ManakAI</strong><span>Loading regulatory workspace...</span></div>
+    </div>
+    <iframe src="screens/home.html" title="ManakAI home workspace"></iframe>
+    <noscript>
+      <p class="fallback">JavaScript is required for the ManakAI workspace. Open <a href="screens/home.html">Home</a> directly.</p>
+    </noscript>
+  </main>
+</body>
+</html>
