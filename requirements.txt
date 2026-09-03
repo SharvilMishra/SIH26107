@@ -4,3 +4,8 @@ pydantic
 python-dotenv
 supabase
 httpx
+pillow
+pytesseract
+pypdf
+python-docx
+python-multipart

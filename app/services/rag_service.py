@@ -99,11 +99,23 @@ class RAGService:
         ordered_ids = sorted(scores, key=lambda cid: scores[cid], reverse=True)
         return [clauses[cid] for cid in ordered_ids]
 
-    def answer(self, query: str, language: str = "en") -> dict[str, Any]:
+    def answer(self, query: str, language: str = "en", context: str | None = None) -> dict[str, Any]:
         """Full pipeline: retrieve -> synthesize -> log -> return
         {answer, sources}. This is what routes/chat.py calls.
         """
         chunks = self.retrieve(query)
+
+        if context:
+            # An uploaded document's extracted text, folded in as an
+            # extra pseudo-chunk so it's available to _synthesize()
+            # once the LLM call is wired up.
+            chunks = [{
+                "id": "uploaded-doc",
+                "standard_id": "",
+                "clause_number": "uploaded document",
+                "text": context,
+            }] + chunks
+
         if not chunks:
             answer_text = NO_CONTEXT_FALLBACK
         else:

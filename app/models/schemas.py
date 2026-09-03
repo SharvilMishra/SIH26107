@@ -16,11 +16,18 @@ from pydantic import BaseModel
 class ChatQuery(BaseModel):
     query: str
     language: str = "en"
+    context: Optional[str] = None  # extracted text from an uploaded document, if any
 
 
 class ChatResponse(BaseModel):
     answer: str
     sources: list[str] = []
+
+
+class DocumentUploadResponse(BaseModel):
+    filename: str
+    extracted_text: str
+    truncated: bool
 
 
 # ---------------------------------------------------------------------
@@ -109,3 +116,13 @@ class VerificationResult(BaseModel):
     valid_format: bool
     verified: Optional[bool] = None
     detail: str | dict = ""
+
+
+class ScanResult(BaseModel):
+    type: str
+    value: str
+    valid_format: bool
+    verified: Optional[bool] = None
+    detail: str | dict = ""
+    ocr_text: str = ""
+    ocr_available: bool = True

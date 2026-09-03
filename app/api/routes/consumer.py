@@ -3,11 +3,16 @@ Routes for consumer-facing endpoints.
 
 GET /consumer/verify - deterministic lookup for HUID (hallmark), CM/L,
                         or CRS identifiers (technical guide, Phase 3)
+POST /consumer/scan  - OCR a photo of a hallmark/ISI mark, extract a
+                        candidate identifier, then run it through the
+                        same verification as /verify (Scan & Verify
+                        feature on verify.html)
 """
 
-from fastapi import APIRouter, HTTPException, Query
+from fastapi import APIRouter, File, HTTPException, Query, UploadFile
 
-from app.models.schemas import VerificationResult
+from app.models.schemas import ScanResult, VerificationResult
+from app.services.ocr_service import OCRService
 from app.services.verification_service import VerificationService
 
 router = APIRouter()
@@ -31,3 +36,10 @@ def verify_identifier(
         "crs": service.verify_crs,
     }[type_lower]
     return handler(value)
+
+
+@router.post("/scan", response_model=ScanResult)
+async def scan_identifier(file: UploadFile = File(...)):
+    image_bytes = await file.read()
+    service = OCRService()
+    return service.scan_and_verify(image_bytes)
