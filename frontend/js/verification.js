@@ -126,4 +126,48 @@ document.addEventListener('DOMContentLoaded', () => {
     div.textContent = str;
     return div.innerHTML;
   }
+
+  // ---- Scan & Verify (camera) -> POST /consumer/scan ----
+  const scanDropzone = document.querySelector('#scan-dropzone');
+  const scanFileInput = document.querySelector('#scan-file-input');
+  const scanIcon = document.querySelector('#scan-icon');
+  const scanLabel = document.querySelector('#scan-label');
+
+  if (scanDropzone && scanFileInput) {
+    scanDropzone.addEventListener('click', () => scanFileInput.click());
+    scanFileInput.addEventListener('change', () => {
+      const file = scanFileInput.files[0];
+      if (file) scanAndVerify(file);
+    });
+  }
+
+  async function scanAndVerify(file) {
+    scanIcon.textContent = 'progress_activity';
+    scanIcon.classList.add('animate-spin');
+    scanLabel.textContent = 'Scanning…';
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+      const base = window.MANAKAI_API_BASE || '';
+      const res = await fetch(base + '/consumer/scan', { method: 'POST', body: formData });
+      const result = await res.json();
+
+      if (!result.ocr_available) {
+        renderError(result.detail || 'Scanning is not available on this deployment yet.');
+      } else if (!result.value) {
+        renderError(result.detail || 'Could not find a HUID or license number in that photo. Try manual entry instead.');
+      } else {
+        renderResult(result);
+      }
+    } catch (err) {
+      renderError(err.message);
+    } finally {
+      scanIcon.textContent = 'photo_camera';
+      scanIcon.classList.remove('animate-spin');
+      scanLabel.textContent = 'Tap to open camera';
+      scanFileInput.value = '';
+    }
+  }
 });

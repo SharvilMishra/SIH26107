@@ -7,6 +7,33 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!container || !input || !sendBtn) return; // not this page
 
   sendBtn.addEventListener('click', send);
+
+  const attachBtn = document.querySelector('#chat-attach-btn');
+  const fileInput = document.querySelector('#chat-file-input');
+  let pendingContext = null;
+  let pendingFilename = null;
+
+  attachBtn?.addEventListener('click', () => fileInput.click());
+  fileInput?.addEventListener('change', async () => {
+    const file = fileInput.files[0];
+    if (!file) return;
+    attachBtn.querySelector('span').textContent = 'progress_activity';
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+      const result = await manakaiFetch('/chat/upload', { method: 'POST', body: formData });
+      pendingContext = result.extracted_text;
+      pendingFilename = result.filename;
+      input.placeholder = `Ask about ${result.filename}...`;
+    } catch (err) {
+      addErrorMessage(`Couldn't read that file: ${err.message}`);
+    } finally {
+      attachBtn.querySelector('span').textContent = 'attach_file';
+      fileInput.value = '';
+    }
+  });
   input.addEventListener('keydown', (event) => {
     if (event.key === 'Enter' && !event.shiftKey) {
       event.preventDefault();
@@ -26,8 +53,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const result = await manakaiFetch('/chat/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query, language: 'en' }),
+        body: JSON.stringify({ query, language: 'en', context: pendingContext }),
       });
+      pendingContext = null;
+      pendingFilename = null;
+      input.placeholder = 'Ask about BIS standards, regulations, or compliance...';
       thinkingEl.remove();
       addAiMessage(result.answer, result.sources || []);
     } catch (err) {

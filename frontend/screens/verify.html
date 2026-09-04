@@ -228,12 +228,11 @@
 </div>
 <p class="text-on-surface-variant font-body-md text-body-md mb-6">Instantly verify by scanning the BIS hallmark or ISI mark on the product packaging.</p>
 <!-- OCR Visualization Area -->
-<div class="relative w-full h-48 bg-surface-container-low rounded-lg border border-dashed border-outline flex flex-col items-center justify-center overflow-hidden cursor-pointer group">
+<div class="relative w-full h-48 bg-surface-container-low rounded-lg border border-dashed border-outline flex flex-col items-center justify-center overflow-hidden cursor-pointer group" id="scan-dropzone">
 <div class="absolute inset-0 bg-black/5 group-hover:bg-black/10 transition-colors z-0"></div>
-<span class="material-symbols-outlined text-outline text-4xl mb-2 z-10">photo_camera</span>
-<span class="text-on-surface-variant font-label-md text-label-md z-10">Tap to open camera</span>
-<!-- Simulated Scanner Line -->
-<div class="ocr-scan-line hidden group-hover:block z-20"></div>
+<span class="material-symbols-outlined text-outline text-4xl mb-2 z-10" id="scan-icon">photo_camera</span>
+<span class="text-on-surface-variant font-label-md text-label-md z-10" id="scan-label">Tap to open camera</span>
+<input type="file" accept="image/*" capture="environment" id="scan-file-input" class="hidden">
 </div>
 </div>
 <!-- Divider -->

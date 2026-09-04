@@ -161,9 +161,10 @@
 <!-- Input Area -->
 <div class="absolute bottom-0 left-0 w-full p-margin-mobile md:p-margin-desktop bg-gradient-to-t from-surface via-surface to-transparent">
 <div class="max-w-3xl mx-auto relative bg-surface-container-lowest rounded-full border border-border-subtle shadow-[0_4px_12px_rgba(0,0,0,0.05)] flex items-center p-2 focus-within:border-secondary focus-within:ring-1 focus-within:ring-secondary transition-all">
-<button class="w-12 h-12 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-surface-container">
+<button class="w-12 h-12 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-surface-container" id="chat-attach-btn">
 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">attach_file</span>
 </button>
+<input type="file" accept=".pdf,.docx,.txt" id="chat-file-input" class="hidden">
 <input class="flex-1 bg-transparent border-none focus:ring-0 font-body-md text-body-md text-on-surface px-4 h-12 placeholder-on-surface-variant" id="chat-input" placeholder="Ask about BIS standards, regulations, or compliance..." type="text">
 <button class="w-12 h-12 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-surface-container">
 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">mic</span>
