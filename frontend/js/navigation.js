@@ -86,9 +86,22 @@
       return;
     }
 
-    if (label === 'language' || label === 'switch mode' || label === 'logout') {
+    if (label === 'logout') {
       event.preventDefault();
-      window.alert(label === 'logout' ? 'You have been signed out.' : label + ' preferences are ready to configure.');
+      if (window.ManakAIAuth) {
+        window.ManakAIAuth.signOutUser().then(function () {
+          const inScreensDir = window.location.pathname.includes('/screens/');
+          window.location.href = inScreensDir ? 'login.html' : 'screens/login.html';
+        });
+      } else {
+        window.alert('Logout is not available on this page.');
+      }
+      return;
+    }
+
+    if (label === 'language' || label === 'switch mode') {
+      event.preventDefault();
+      window.alert(label + ' preferences are ready to configure.');
     }
   });
 }());
