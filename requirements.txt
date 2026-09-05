@@ -9,3 +9,4 @@ pytesseract
 pypdf
 python-docx
 python-multipart
+firebase-admin
