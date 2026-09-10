@@ -11,8 +11,7 @@
  * Frontend served BY the backend itself (see the optional static mount
  * in backend/app/main.py): set this to "" (relative/same-origin) instead.
  */
-window.MANAKAI_API_BASE = window.MANAKAI_API_BASE || "";
-
+window.MANAKAI_API_BASE = window.MANAKAI_API_BASE || "https://sih26107.onrender.com";
 /**
  * Small fetch helper shared by every page-specific script.
  * Throws a readable Error on non-2xx responses instead of failing silently.
