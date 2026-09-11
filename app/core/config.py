@@ -12,9 +12,9 @@ SUPABASE_URL = os.getenv("SUPABASE_URL", "")
 SUPABASE_KEY = os.getenv("SUPABASE_KEY", "")  # service_role key for backend use, never expose to frontend
 SUPABASE_DB_URL = os.getenv("SUPABASE_DB_URL", "")  # direct Postgres connection string, for raw SQL if needed
 
-# --- AI / ML (RAG pipeline - owned by Aditya Shukla, backend just needs the keys) ---
-LLM_API_KEY = os.getenv("LLM_API_KEY", "")
-EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "BAAI/bge-m3")
+# --- Groq (LLM synthesis for chat answers -- Sharvil's part) ---
+GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
+GROQ_MODEL = os.getenv("GROQ_MODEL", "openai/gpt-oss-120b")
 
 # --- Retrieval tuning (Phase 2 of technical guide: hybrid dense + BM25/keyword) ---
 HYBRID_DENSE_WEIGHT = float(os.getenv("HYBRID_DENSE_WEIGHT", "0.6"))
