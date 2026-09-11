@@ -2,16 +2,62 @@
   const themeKey = 'manakai-theme';
   const themeStyles = `
     html, body, body * { transition: background-color .18s ease, border-color .18s ease, color .18s ease; }
-    html.dark body { background: #0b0d10 !important; color: #f8fafc !important; }
-    html.dark .bg-background, html.dark .bg-surface, html.dark .bg-surface-bright { background: #0b0d10 !important; }
-    html.dark .bg-surface-container-low { background: #15191f !important; }
-    html.dark .bg-surface-container-lowest, html.dark .bg-surface-container { background: #15191f !important; }
-    html.dark .bg-surface-container-high, html.dark .bg-surface-container-highest, html.dark .bg-surface-variant { background: #20252d !important; }
-    html.dark .text-on-background, html.dark .text-text-primary, html.dark .text-on-surface { color: #f8fafc !important; }
-    html.dark .text-on-surface-variant, html.dark .text-text-secondary { color: #b8c0cc !important; }
-    html.dark .border-outline, html.dark .border-outline-variant, html.dark .border-border-subtle { border-color: #343b46 !important; }
-    html.dark input, html.dark textarea, html.dark select { background: #15191f !important; color: #f8fafc !important; border-color: #343b46 !important; }
-    html.dark input::placeholder, html.dark textarea::placeholder { color: #8993a1 !important; }
+
+    /* --- Page background + base surfaces: near-black paper, raised panels --- */
+    html.dark body { background: #0a0c10 !important; color: #e9edf5 !important; }
+    html.dark .bg-background, html.dark .bg-surface, html.dark .bg-surface-bright { background: #0a0c10 !important; }
+    html.dark .bg-surface-container-low { background: #14171d !important; }
+    html.dark .bg-surface-container-lowest, html.dark .bg-surface-container { background: #181c23 !important; }
+    html.dark .bg-surface-container-high, html.dark .bg-surface-container-highest, html.dark .bg-surface-variant { background: #22262f !important; }
+    html.dark .bg-surface-dim { background: #14171d !important; }
+
+    /* --- Body / muted text --- */
+    html.dark .text-on-background, html.dark .text-text-primary, html.dark .text-on-surface { color: #e9edf5 !important; }
+    html.dark .text-on-surface-variant, html.dark .text-text-secondary { color: #a3acbd !important; }
+    html.dark .text-outline { color: #7d879c !important; }
+
+    /* --- Brand / headline color: the dark navy #000666 is invisible on a dark
+       page, so headlines and accent text switch to a soft periwinkle instead
+       of staying near-black. This is the fix for the unreadable "simple hai"
+       style headlines. --- */
+    html.dark .text-primary { color: #aab4ff !important; }
+    html.dark .text-secondary { color: #8fb3ff !important; }
+    html.dark .border-primary { border-color: #5b66c9 !important; }
+    html.dark .border-secondary { border-color: #4a72c9 !important; }
+
+    /* --- Solid brand buttons/badges: keep them solid and saturated (this is
+       the "accent-solid" pattern -- fills don't flip with the theme, only
+       get slightly brighter for legibility), text stays white on top --- */
+    html.dark .bg-primary { background: #2530a8 !important; }
+    html.dark .bg-primary:hover { background: #313fc2 !important; }
+    html.dark .bg-secondary { background: #2b5bb5 !important; }
+    html.dark .bg-secondary:hover { background: #3768cc !important; }
+    html.dark .bg-bis-gold { background: #c99a2e !important; }
+
+    /* --- Container/pill badges (e.g. "IS 302-2-3" chips) --- */
+    html.dark .bg-primary-container { background: #232f8f !important; }
+    html.dark .text-on-primary-container { color: #b7c0ff !important; }
+    html.dark .bg-secondary-container { background: #3a5fc4 !important; }
+    html.dark .text-on-secondary-container { color: #e3ebff !important; }
+
+    /* --- Status colors: brighten just enough to read clearly on near-black
+       without turning neon --- */
+    html.dark .text-success-green { color: #6fd68a !important; }
+    html.dark .bg-success-green { background: #2f8f4f !important; }
+    html.dark .text-alert-red { color: #ff8a80 !important; }
+    html.dark .bg-alert-red { background: #b3453d !important; }
+
+    /* --- Borders, inputs, dividers --- */
+    html.dark .border-outline, html.dark .border-outline-variant, html.dark .border-border-subtle { border-color: #2e333d !important; }
+    html.dark input, html.dark textarea, html.dark select {
+      background: #14171d !important;
+      color: #e9edf5 !important;
+      border-color: #2e333d !important;
+    }
+    html.dark input::placeholder, html.dark textarea::placeholder { color: #7d879c !important; }
+
+    /* --- Icons inherit currentColor via the text-* overrides above --- */
+    html.dark .material-symbols-outlined { color: inherit; }
   `;
   const routes = {
     home: 'home.html',
