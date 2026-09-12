@@ -26,5 +26,19 @@ RERANK_FINAL_K = int(os.getenv("RERANK_FINAL_K", "4"))
 BIS_CARE_BASE_URL = os.getenv("BIS_CARE_BASE_URL", "")
 
 # --- Multilingual (Phase 5) ---
+# Bhashini (Digital India / MeitY) speech+translation APIs. Get these from
+# the Bhashini Udyat dashboard (My Profile -> API Keys) -- you need BOTH
+# the user id and the API key, not just the key, to call the pipeline
+# config endpoint. See app/services/bhashini_service.py for the two-call
+# flow (config call resolves the model/endpoint, compute call translates).
+BHASHINI_USER_ID = os.getenv("BHASHINI_USER_ID", "")
 BHASHINI_API_KEY = os.getenv("BHASHINI_API_KEY", "")
+# Default published pipeline that covers ASR+translation+TTS for the
+# standard Indian-language set; override if Udyat issues you a different
+# pipelineId for your project.
+BHASHINI_PIPELINE_ID = os.getenv("BHASHINI_PIPELINE_ID", "64392f96daac500b55c543cd")
+BHASHINI_CONFIG_URL = os.getenv(
+    "BHASHINI_CONFIG_URL",
+    "https://meity-auth.ulcacontrib.org/ulca/apis/v0/model/getModelsPipeline",
+)
 DEFAULT_LANGUAGE = os.getenv("DEFAULT_LANGUAGE", "en")

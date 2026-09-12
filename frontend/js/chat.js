@@ -4,7 +4,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const input = document.querySelector('#chat-input');
   const sendBtn = document.querySelector('#chat-send');
   const emptyState = document.querySelector('#chat-empty-state');
+  const languageSelect = document.querySelector('#chat-language');
   if (!container || !input || !sendBtn) return; // not this page
+
+  // Remember the chosen answer language across visits (per browser).
+  const savedLanguage = localStorage.getItem('manakai_chat_language');
+  if (languageSelect && savedLanguage) languageSelect.value = savedLanguage;
+  languageSelect?.addEventListener('change', () => {
+    localStorage.setItem('manakai_chat_language', languageSelect.value);
+  });
 
   sendBtn.addEventListener('click', send);
 
@@ -53,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const result = await manakaiFetch('/chat/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query, language: 'en', context: pendingContext }),
+        body: JSON.stringify({ query, language: languageSelect?.value || 'en', context: pendingContext }),
       });
       pendingContext = null;
       pendingFilename = null;

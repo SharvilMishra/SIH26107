@@ -139,10 +139,22 @@
 <a class="text-on-surface-variant hover:text-secondary transition-colors cursor-pointer active:scale-95 transition-transform" href="#">Complaints</a>
 </nav>
 <div class="flex items-center gap-unit">
-<button class="px-4 h-touch-target rounded-full hover:bg-surface-container transition-colors font-label-md text-label-md text-primary flex items-center gap-2">
+<div class="px-3 h-touch-target rounded-full hover:bg-surface-container transition-colors font-label-md text-label-md text-primary flex items-center gap-2">
 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">language</span>
-                    Language
-                </button>
+<select id="chat-language" class="bg-transparent border-none focus:ring-0 font-label-md text-label-md text-primary cursor-pointer" aria-label="Answer language">
+<option value="en">English</option>
+<option value="hi">हिंदी (Hindi)</option>
+<option value="bn">বাংলা (Bengali)</option>
+<option value="gu">ગુજરાતી (Gujarati)</option>
+<option value="mr">मराठी (Marathi)</option>
+<option value="ta">தமிழ் (Tamil)</option>
+<option value="te">తెలుగు (Telugu)</option>
+<option value="kn">ಕನ್ನಡ (Kannada)</option>
+<option value="ml">മലയാളം (Malayalam)</option>
+<option value="pa">ਪੰਜਾਬੀ (Punjabi)</option>
+<option value="or">ଓଡ଼ିଆ (Odia)</option>
+</select>
+</div>
 <button class="px-4 h-touch-target rounded-full border border-secondary text-secondary hover:bg-secondary-fixed transition-colors font-label-md text-label-md flex items-center gap-2">
                     Switch Mode
                 </button>

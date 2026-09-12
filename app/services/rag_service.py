@@ -25,6 +25,7 @@ from app.core.config import (
     GROQ_MODEL,
 )
 from app.services.supabase_service import SupabaseService
+from app.services.bhashini_service import BhashiniService, BhashiniError
 
 NO_CONTEXT_FALLBACK = (
     "I couldn't find a specific Indian Standard clause covering this in our "
@@ -33,8 +34,17 @@ NO_CONTEXT_FALLBACK = (
 
 
 class RAGService:
-    def __init__(self, supabase_service: SupabaseService | None = None):
+    def __init__(
+        self,
+        supabase_service: SupabaseService | None = None,
+        translator: BhashiniService | None = None,
+    ):
         self.db = supabase_service or SupabaseService()
+        # Retrieval/synthesis (embed(), _synthesize()'s system prompt, the
+        # BIS clause corpus) are all English. Bhashini bridges that: the
+        # query is translated to English before retrieval, and the answer
+        # is translated back to the caller's language before it goes out.
+        self.translator = translator or BhashiniService()
 
     # ------------------------------------------------------------------
     # AI/ML plug-points.
@@ -140,15 +150,43 @@ class RAGService:
         ordered_ids = sorted(scores, key=lambda cid: scores[cid], reverse=True)
         return [clauses[cid] for cid in ordered_ids]
 
+    def _to_english(self, text: str, language: str) -> str:
+        """Best-effort translate to English for retrieval/synthesis.
+        Falls back to the original text (in its own language) if
+        Bhashini isn't configured or the call fails -- retrieval/LLM
+        quality will suffer, but the request still completes."""
+        if language == "en" or not self.translator.configured:
+            return text
+        try:
+            return self.translator.translate(text, language, "en")
+        except BhashiniError:
+            return text
+
+    def _from_english(self, text: str, language: str) -> str:
+        """Best-effort translate the English answer back to the
+        caller's language. Falls back to the English text if Bhashini
+        isn't configured or the call fails."""
+        if language == "en" or not self.translator.configured:
+            return text
+        try:
+            return self.translator.translate(text, "en", language)
+        except BhashiniError:
+            return text
+
     def answer(self, query: str, language: str = "en", context: str | None = None) -> dict[str, Any]:
-        """Full pipeline: retrieve -> synthesize -> log -> return
-        {answer, sources}. This is what routes/chat.py calls.
+        """Full pipeline: translate -> retrieve -> synthesize -> translate
+        back -> log -> return {answer, sources}. This is what
+        routes/chat.py calls.
         """
-        chunks = self.retrieve(query)
+        query_en = self._to_english(query, language)
+
+        chunks = self.retrieve(query_en)
 
         if context:
             # An uploaded document's extracted text, folded in as an
             # extra pseudo-chunk so it's available to _synthesize().
+            # Assumed already in English (extracted from a BIS/compliance
+            # doc) -- not translated.
             chunks = [{
                 "id": "uploaded-doc",
                 "standard_id": "",
@@ -160,9 +198,11 @@ class RAGService:
             answer_text = NO_CONTEXT_FALLBACK
         else:
             try:
-                answer_text = self._synthesize(query, chunks)
+                answer_text = self._synthesize(query_en, chunks)
             except NotImplementedError:
                 answer_text = NO_CONTEXT_FALLBACK
+
+        answer_text = self._from_english(answer_text, language)
 
         clause_ids = [c["id"] for c in chunks]
         self.db.log_query(query, language, answer_text, clause_ids)
