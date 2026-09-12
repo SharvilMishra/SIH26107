@@ -58,6 +58,80 @@
 
     /* --- Icons inherit currentColor via the text-* overrides above --- */
     html.dark .material-symbols-outlined { color: inherit; }
+
+    /* --- Error containers (e.g. "Deactivate Account" danger zones): the
+       light-pink error-container background at low opacity looked like a
+       stray muddy patch on a dark page. Darken it and brighten the text
+       so it still reads as "danger" without clashing with the theme. --- */
+    html.dark [class*="bg-error-container"] { background-color: #4a2020 !important; }
+    html.dark [class*="border-error-container"] { border-color: #7a3a3a !important; }
+    html.dark .text-error { color: #ff8a80 !important; }
+    html.dark .text-on-error-container { color: #ffd9d4 !important; }
+
+    /* --- Inverse-surface elements (floating toasts/snackbars): give them a
+       touch more separation from an already-dark page so they still "pop". --- */
+    html.dark .bg-inverse-surface { background: #3a3f47 !important; }
+    html.dark .text-inverse-on-surface { color: #f5f6f8 !important; }
+
+    /* --- "Pending"/incomplete sections use opacity-50 as a dimming cue;
+       50% opacity reads as near-invisible once the underlying colors are
+       already dark, so ease it up specifically in dark mode. --- */
+    html.dark .opacity-50 { opacity: 0.75 !important; }
+
+    /* --- Material "Fixed" role chips/badges (primary-fixed, secondary-fixed,
+       tertiary-fixed, and their -dim variants) are DELIBERATELY the same
+       light color in both themes -- but text/icons inside them were
+       inheriting our global dark-mode text overrides meant for the rest of
+       the page, going light-on-light. Force dark, legible text back inside
+       these specific chips regardless of theme. Handles the always-visible
+       cases (icon badges, decorative panels) directly; hover/group-hover/
+       peer-checked variants are gated to only apply when actually active,
+       matching Tailwind's own conditional classes. --- */
+    html.dark [class*="bg-primary-fixed"]:not([class*="hover:"]):not([class*="group-hover:"]),
+    html.dark [class*="bg-secondary-fixed"]:not([class*="hover:"]):not([class*="group-hover:"]),
+    html.dark [class*="bg-tertiary-fixed"]:not([class*="hover:"]):not([class*="group-hover:"]) {
+      color: #1a1c1e !important;
+    }
+    html.dark [class*="bg-primary-fixed"]:not([class*="hover:"]):not([class*="group-hover:"]) *,
+    html.dark [class*="bg-secondary-fixed"]:not([class*="hover:"]):not([class*="group-hover:"]) *,
+    html.dark [class*="bg-tertiary-fixed"]:not([class*="hover:"]):not([class*="group-hover:"]) * {
+      color: inherit !important;
+    }
+    html.dark [class*="hover\:bg-primary-fixed"]:hover,
+    html.dark [class*="hover\:bg-secondary-fixed"]:hover,
+    html.dark [class*="hover\:bg-tertiary-fixed"]:hover {
+      color: #1a1c1e !important;
+    }
+    html.dark [class*="hover\:bg-primary-fixed"]:hover *,
+    html.dark [class*="hover\:bg-secondary-fixed"]:hover *,
+    html.dark [class*="hover\:bg-tertiary-fixed"]:hover * {
+      color: inherit !important;
+    }
+    html.dark .group:hover [class*="group-hover\:bg-primary-fixed"],
+    html.dark .group:hover [class*="group-hover\:bg-secondary-fixed"],
+    html.dark .group:hover [class*="group-hover\:bg-tertiary-fixed"] {
+      color: #1a1c1e !important;
+    }
+    html.dark .group:hover [class*="group-hover\:bg-primary-fixed"] *,
+    html.dark .group:hover [class*="group-hover\:bg-secondary-fixed"] *,
+    html.dark .group:hover [class*="group-hover\:bg-tertiary-fixed"] * {
+      color: inherit !important;
+    }
+
+    /* --- Radio/checkbox "selected card" pattern (peer-checked:bg-*-fixed),
+       e.g. the grievance-type picker on complaint.html: when checked, the
+       card goes light per the Fixed-role spec, so its text needs to stay
+       dark too, only while actually checked. --- */
+    html.dark .peer:checked ~ [class*="peer-checked\:bg-primary-fixed"],
+    html.dark .peer:checked ~ [class*="peer-checked\:bg-secondary-fixed"],
+    html.dark .peer:checked ~ [class*="peer-checked\:bg-tertiary-fixed"] {
+      color: #1a1c1e !important;
+    }
+    html.dark .peer:checked ~ [class*="peer-checked\:bg-primary-fixed"] *,
+    html.dark .peer:checked ~ [class*="peer-checked\:bg-secondary-fixed"] *,
+    html.dark .peer:checked ~ [class*="peer-checked\:bg-tertiary-fixed"] * {
+      color: inherit !important;
+    }
   `;
   const routes = {
     home: 'home.html',
