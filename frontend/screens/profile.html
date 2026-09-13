@@ -1,3 +1,245 @@
-<!doctype html><html lang="en"><head>
+<!DOCTYPE html><html class="h-full bg-surface" lang="en"><head>
 <style>html{visibility:hidden}</style>
-<script type="module" src="../js/auth-guard.js"></script><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Profile</title><link rel="stylesheet" href="../css/styles.css"></head><body><div class="app-shell"><aside class="sidebar"><a class="brand" href="home.html"><span class="brand-mark">M</span><span><strong>ManakAI</strong><small>BIS standards intelligence</small></span></a><div class="nav-label">Account</div><nav class="nav"><a href="home.html">⌂ &nbsp; Home</a><a href="notifications.html">◔ &nbsp; Notifications</a><a href="profile.html">○ &nbsp; Profile</a><a href="settings.html">⚙ &nbsp; Settings</a></nav><div class="sidebar-foot">Bureau of Indian Standards<br><span>Trusted information, made usable.</span></div></aside><main class="main"><header class="topbar"><div class="breadcrumb">Account / <strong>Profile</strong></div><div class="avatar">AS</div></header><section class="content"><div class="eyebrow">Workspace identity</div><h1 class="page-title">Your profile,<br><em>your lens.</em></h1><p class="lede">Personalise the standards and product context that ManakAI brings forward.</p><section class="panel" style="max-width:780px"><div class="grid grid-2"><div class="field"><label>Full name</label><input value="Aditya Sharma"></div><div class="field"><label>Organisation</label><input value="Surya Homeware Pvt. Ltd."></div><div class="field"><label>Role</label><select><option>Compliance lead</option><option>Researcher</option><option>Consumer</option></select></div><div class="field"><label>Primary sector</label><select><option>Electrical appliances</option><option>Construction</option><option>Food</option></select></div></div><button class="btn" style="margin-top:20px" data-toast="Profile updated">Save changes →</button></section></section></main></div><script src="../js/main.js"></script></body></html>
+<script type="module" src="../js/auth-guard.js"></script>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Profile - ManakAI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-container": "#8690ee",
+                        "outline": "#767683",
+                        "secondary": "#2b5bb5",
+                        "on-secondary-fixed-variant": "#00429c",
+                        "alert-red": "#C62828",
+                        "on-primary-fixed": "#000767",
+                        "tertiary-container": "#003909",
+                        "inverse-surface": "#2e3132",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#4c56af",
+                        "tertiary": "#002103",
+                        "error": "#ba1a1a",
+                        "primary-container": "#1a237e",
+                        "on-secondary-container": "#00337c",
+                        "on-secondary-fixed": "#001945",
+                        "on-tertiary-container": "#5aa958",
+                        "bis-gold": "#B8860B",
+                        "surface-variant": "#e1e3e4",
+                        "on-tertiary-fixed": "#002204",
+                        "surface-container-high": "#e7e8e9",
+                        "tertiary-fixed": "#a3f69c",
+                        "on-background": "#191c1d",
+                        "on-primary-fixed-variant": "#343d96",
+                        "text-primary": "#121212",
+                        "on-secondary": "#ffffff",
+                        "outline-variant": "#c6c5d4",
+                        "inverse-on-surface": "#f0f1f2",
+                        "surface-container-low": "#f3f4f5",
+                        "primary-fixed-dim": "#bdc2ff",
+                        "background": "#f8f9fa",
+                        "text-secondary": "#424242",
+                        "border-subtle": "#E0E0E0",
+                        "on-surface": "#191c1d",
+                        "surface": "#f8f9fa",
+                        "secondary-fixed-dim": "#b0c6ff",
+                        "primary-fixed": "#e0e0ff",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#bdc2ff",
+                        "primary": "#000666",
+                        "on-tertiary-fixed-variant": "#005312",
+                        "tertiary-fixed-dim": "#88d982",
+                        "surface-container": "#edeeef",
+                        "secondary-fixed": "#d9e2ff",
+                        "surface-bright": "#f8f9fa",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-dim": "#d9dadb",
+                        "on-tertiary": "#ffffff",
+                        "success-green": "#2E7D32",
+                        "on-surface-variant": "#454652",
+                        "secondary-container": "#759efd",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "gutter": "16px",
+                        "unit": "4px",
+                        "margin-desktop": "48px",
+                        "touch-target": "48px",
+                        "max-width-content": "1200px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "code-sm": ["monospace"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "code-sm": ["13px", { "lineHeight": "18px", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface text-text-primary font-body-md h-full flex flex-col antialiased">
+<!-- TopNavBar (Mobile Only) -->
+<header class="md:hidden bg-surface flex justify-between items-center w-full px-margin-mobile h-touch-target border-b border-outline-variant z-50 sticky top-0">
+<div class="font-headline-md text-headline-md-mobile font-bold text-primary">
+            ManakAI
+        </div>
+<button aria-label="Menu" class="material-symbols-outlined text-on-surface-variant p-2">menu</button>
+</header>
+<div class="flex flex-1 overflow-hidden">
+<!-- SideNavBar (Desktop) -->
+<nav class="hidden lg:flex flex-col border-r border-outline-variant w-64 z-40 bg-surface-container-low h-full flex-shrink-0">
+<div class="p-6 pb-2">
+<div class="flex items-center gap-3 mb-8">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary font-bold">
+                        B
+                    </div>
+<div>
+<h1 class="font-headline-md text-headline-md font-black text-primary">ManakAI</h1>
+<p class="font-label-md text-label-md text-on-surface-variant">Regulatory Assistant</p>
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary h-touch-target rounded-lg font-label-md text-label-md flex items-center justify-center gap-2 hover:bg-on-primary-fixed-variant transition-colors mb-6">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add</span>
+                    New Inquiry
+                </button>
+</div>
+<div class="flex-1 overflow-y-auto px-4 py-2 space-y-1">
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high px-4 py-2 h-touch-target rounded-lg transition-all duration-200 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                    Dashboard
+                </a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high px-4 py-2 h-touch-target rounded-lg transition-all duration-200 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">analytics</span>
+                    Research
+                </a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high px-4 py-2 h-touch-target rounded-lg transition-all duration-200 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">verified</span>
+                    Certificates
+                </a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high px-4 py-2 h-touch-target rounded-lg transition-all duration-200 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">gavel</span>
+                    Compliance
+                </a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high px-4 py-2 h-touch-target rounded-lg transition-all duration-200 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">help_center</span>
+                    Support
+                </a>
+
+</div>
+<div class="p-4 border-t border-outline-variant space-y-1">
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high px-4 py-2 mx-2 h-touch-target rounded-lg transition-all duration-200 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+                    Settings
+                </a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high px-4 py-2 mx-2 h-touch-target rounded-lg transition-all duration-200 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">logout</span>
+                    Logout
+                </a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 overflow-y-auto bg-surface-bright">
+<div class="px-margin-mobile md:px-margin-desktop py-8 max-w-max-width-content mx-auto">
+<header class="mb-10">
+<h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-2">Profile</h1>
+<p class="font-body-lg text-body-lg text-text-secondary">Personalise the standards and product context that ManakAI brings forward.</p>
+</header>
+<section class="bg-surface-container-lowest rounded-xl border border-border-subtle p-6 shadow-sm max-w-3xl">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div>
+<label class="block font-label-md text-label-md text-text-secondary mb-2">Full Name</label>
+<input class="w-full h-touch-target px-4 border border-border-subtle rounded-lg bg-surface focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-colors font-body-md text-body-md text-text-primary" type="text" value="Aditya Sharma">
+</div>
+<div>
+<label class="block font-label-md text-label-md text-text-secondary mb-2">Organisation</label>
+<input class="w-full h-touch-target px-4 border border-border-subtle rounded-lg bg-surface focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-colors font-body-md text-body-md text-text-primary" type="text" value="Surya Homeware Pvt. Ltd.">
+</div>
+<div>
+<label class="block font-label-md text-label-md text-text-secondary mb-2">Role</label>
+<select class="w-full h-touch-target px-4 border border-border-subtle rounded-lg bg-surface focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-colors font-body-md text-body-md text-text-primary appearance-none">
+<option>Compliance lead</option>
+<option>Researcher</option>
+<option>Consumer</option>
+</select>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-text-secondary mb-2">Primary Sector</label>
+<select class="w-full h-touch-target px-4 border border-border-subtle rounded-lg bg-surface focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-colors font-body-md text-body-md text-text-primary appearance-none">
+<option>Electrical appliances</option>
+<option>Construction</option>
+<option>Food</option>
+</select>
+</div>
+</div>
+<div class="flex justify-end">
+<button class="bg-primary text-on-primary h-touch-target px-6 rounded-lg font-label-md text-label-md hover:bg-on-primary-fixed-variant transition-colors" data-toast="Profile updated">Save Changes</button>
+</div>
+</section>
+</div>
+</main>
+</div>
+<!-- Footer -->
+<footer class="w-full px-margin-desktop py-margin-mobile flex flex-col md:flex-row justify-between items-center gap-gutter border-t border-outline-variant bg-surface-container-high py-8 mt-12">
+<div class="font-label-md text-label-md font-bold text-primary">
+                    © 2024 Bureau of Indian Standards. All rights reserved.
+                </div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-bis-gold transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-bis-gold transition-colors" href="#">Terms of Service</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-bis-gold transition-colors" href="#">Accessibility</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-bis-gold transition-colors" href="#">Contact BIS</a>
+</div>
+</footer>
+</body><script src="../js/navigation.js"></script><script>
+(function () {{
+  function showToast(message) {{
+    var existing = document.getElementById('manakai-toast');
+    if (existing) existing.remove();
+    var toast = document.createElement('div');
+    toast.id = 'manakai-toast';
+    toast.className = 'fixed bottom-8 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface px-5 py-3 rounded-full shadow-lg flex items-center gap-2 z-[9999] transition-opacity duration-300';
+    toast.innerHTML = '<span class="material-symbols-outlined text-[18px]">check_circle</span><span class="font-label-md text-label-md">' + message + '</span>';
+    document.body.appendChild(toast);
+    requestAnimationFrame(function () {{ toast.style.opacity = '1'; }});
+    setTimeout(function () {{
+      toast.style.opacity = '0';
+      setTimeout(function () {{ toast.remove(); }}, 300);
+    }}, 2200);
+  }}
+  document.querySelectorAll('[data-toast]').forEach(function (el) {{
+    el.addEventListener('click', function () {{ showToast(el.dataset.toast); }});
+  }});
+}}());
+</script></html>

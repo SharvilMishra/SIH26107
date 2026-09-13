@@ -196,7 +196,8 @@
     'my grievances': 'grievances.html',
     'saved items': 'saved-items.html',
     consultations: 'consultations.html',
-    profile: 'profile.html'
+    profile: 'profile.html',
+    notifications: 'notifications.html'
   };
 
   function applyTheme(theme) {
@@ -406,7 +407,7 @@
       return;
     }
 
-    if (label === 'logout') {
+    if (label.includes('logout')) {
       event.preventDefault();
       if (window.ManakAIAuth) {
         window.ManakAIAuth.signOutUser().then(function () {
@@ -419,7 +420,7 @@
       return;
     }
 
-    if (label === 'language' || label === 'switch mode') {
+    if (label.includes('language')) {
       event.preventDefault();
       window.alert(label + ' preferences are ready to configure.');
     }
