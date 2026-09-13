@@ -132,6 +132,44 @@
     html.dark .peer:checked ~ [class*="peer-checked\:bg-tertiary-fixed"] * {
       color: inherit !important;
     }
+
+    /* --- Mobile navigation (drawer built up by buildMobileNav below).
+       Every screen hides its real nav -- top links, action buttons, or a
+       whole sidebar -- behind "hidden md:flex"/"hidden lg:flex" with no
+       working way to reveal it below that breakpoint. This drawer clones
+       whatever is hidden and reveals it as a slide-in panel instead. --- */
+    .manakai-mobile-nav-backdrop {
+      position: fixed; inset: 0; background: rgba(10, 12, 16, 0.5);
+      opacity: 0; pointer-events: none; transition: opacity .2s ease; z-index: 9998;
+    }
+    .manakai-mobile-nav-backdrop.open { opacity: 1; pointer-events: auto; }
+    .manakai-mobile-nav {
+      position: fixed; top: 0; left: 0; height: 100%; width: min(320px, 86vw);
+      background: #ffffff; color: #1a1c1e; box-shadow: 8px 0 30px rgba(0,0,0,.2);
+      transform: translateX(-100%); transition: transform .25s ease;
+      z-index: 9999; overflow-y: auto; -webkit-overflow-scrolling: touch;
+    }
+    .manakai-mobile-nav.open { transform: translateX(0); }
+    html.dark .manakai-mobile-nav { background: #14171d; color: #e9edf5; }
+    .manakai-mobile-nav-inner { display: flex; flex-direction: column; gap: 4px; padding: 68px 18px 28px; }
+    .manakai-mobile-nav-section + .manakai-mobile-nav-section {
+      margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(0,0,0,.08);
+    }
+    html.dark .manakai-mobile-nav-section + .manakai-mobile-nav-section { border-top-color: rgba(255,255,255,.1); }
+    .manakai-mobile-nav-close {
+      position: absolute; top: 14px; right: 14px; width: 40px; height: 40px;
+      display: flex; align-items: center; justify-content: center; border-radius: 999px;
+      background: transparent; border: 0; cursor: pointer; color: inherit;
+    }
+    .manakai-mobile-nav-close:hover { background: rgba(0,0,0,.06); }
+    html.dark .manakai-mobile-nav-close:hover { background: rgba(255,255,255,.1); }
+    .manakai-mobile-nav-fab {
+      position: fixed; bottom: 20px; right: 20px; width: 48px; height: 48px;
+      border-radius: 999px; background: #ffffff; color: #1a1c1e;
+      border: 1px solid rgba(0,0,0,.08); box-shadow: 0 4px 16px rgba(0,0,0,.2);
+      display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 9997;
+    }
+    html.dark .manakai-mobile-nav-fab { background: #22262f; color: #e9edf5; border-color: rgba(255,255,255,.1); }
   `;
   const routes = {
     home: 'home.html',
@@ -182,6 +220,168 @@
   style.textContent = themeStyles;
   document.head.appendChild(style);
   applyTheme(localStorage.getItem(themeKey) || 'light');
+
+  // ------------------------------------------------------------------
+  // Mobile navigation: every screen hides its real nav (top links,
+  // action buttons, or a full sidebar) behind "hidden md:flex" /
+  // "hidden lg:flex" with no working way to reveal it on a phone --
+  // a few screens even have a "menu" icon button already sitting there
+  // with no click handler. Rather than hand-fixing each screen's own
+  // (inconsistent) markup, this finds whatever the page already hides
+  // behind a breakpoint, clones it into one slide-in drawer, and wires
+  // whichever toggle exists (or adds one). Clicks inside the clone
+  // still go through the click listener below unchanged, since it's
+  // the *same* elements/labels/hrefs as the original -- just visible.
+  function buildMobileNav() {
+    if (document.getElementById('manakai-mobile-nav')) return;
+
+    const RESPONSIVE_DISPLAY_TOKENS = new Set(
+      ['sm', 'md', 'lg', 'xl'].flatMap(function (bp) {
+        return ['flex', 'inline-flex', 'block', 'grid'].map(function (d) { return bp + ':' + d; });
+      })
+    );
+
+    const allHidden = Array.prototype.filter.call(document.querySelectorAll('.hidden'), function (el) {
+      const tokens = Array.prototype.slice.call(el.classList);
+      if (tokens.indexOf('hidden') === -1) return false;
+      if (!tokens.some(function (t) { return RESPONSIVE_DISPLAY_TOKENS.has(t); })) return false;
+      // Only real navigation: the node itself is a link/button, or it
+      // contains one -- this is what excludes headings, decorative
+      // panels, and hidden-on-mobile search boxes that matched the
+      // same "hidden md:flex" shape but aren't navigational.
+      return el.tagName === 'A' || el.tagName === 'BUTTON' || !!el.querySelector('a, button');
+    });
+
+    // Drop nested duplicates (e.g. a hidden action button inside an
+    // already-hidden nav container) so each piece of nav is cloned once.
+    const topLevel = allHidden.filter(function (el) {
+      return !allHidden.some(function (other) { return other !== el && other.contains(el); });
+    });
+
+    if (!topLevel.length) return;
+
+    const backdrop = document.createElement('div');
+    backdrop.className = 'manakai-mobile-nav-backdrop';
+
+    const panel = document.createElement('div');
+    panel.id = 'manakai-mobile-nav';
+    panel.className = 'manakai-mobile-nav';
+    panel.setAttribute('role', 'dialog');
+    panel.setAttribute('aria-label', 'Navigation menu');
+
+    const inner = document.createElement('div');
+    inner.className = 'manakai-mobile-nav-inner';
+
+    const closeBtn = document.createElement('button');
+    closeBtn.type = 'button';
+    closeBtn.className = 'manakai-mobile-nav-close';
+    closeBtn.setAttribute('aria-label', 'Close menu');
+    closeBtn.innerHTML = '<span class="material-symbols-outlined">close</span>';
+    panel.appendChild(closeBtn);
+
+    topLevel.forEach(function (node) {
+      const section = document.createElement('div');
+      section.className = 'manakai-mobile-nav-section';
+      const clone = node.cloneNode(true);
+      // Strip ids so we never end up with duplicate ids on the page,
+      // and reset the clone's own box so whatever fixed/absolute
+      // positioning it used for its normal (desktop) placement can't
+      // fight with its new spot inside our drawer -- inline styles
+      // beat the plain utility classes doing that positioning, so
+      // this is enough without having to strip those classes one by one.
+      clone.removeAttribute('id');
+      Array.prototype.forEach.call(clone.querySelectorAll('[id]'), function (n) { n.removeAttribute('id'); });
+      clone.classList.remove('hidden');
+      clone.style.cssText = 'position:static !important; display:flex !important; ' +
+        'flex-direction:column !important; align-items:stretch !important; ' +
+        'width:100% !important; height:auto !important; max-height:none !important; ' +
+        'top:auto !important; left:auto !important; right:auto !important; bottom:auto !important; ' +
+        'inset:auto !important; z-index:auto !important; border:0 !important; ' +
+        'box-shadow:none !important; background:transparent !important; ' +
+        'padding:0 !important; margin:0 !important; gap:6px !important;';
+      section.appendChild(clone);
+      inner.appendChild(section);
+    });
+
+    panel.appendChild(inner);
+    document.body.appendChild(backdrop);
+    document.body.appendChild(panel);
+
+    function openMenu() {
+      panel.classList.add('open');
+      backdrop.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+      panel.classList.remove('open');
+      backdrop.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    closeBtn.addEventListener('click', closeMenu);
+    backdrop.addEventListener('click', closeMenu);
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') closeMenu();
+    });
+    // Belt-and-suspenders: the shared click handler below already
+    // navigates on a route match (which unloads the page anyway), but
+    // this also closes the drawer for non-route actions inside it,
+    // e.g. Language/Switch Mode/Logout, so it doesn't linger open.
+    inner.addEventListener('click', function (event) {
+      if (event.target.closest('a, button') && event.target.closest('button') !== closeBtn) closeMenu();
+    });
+
+    // Reuse an existing "menu" icon button if a screen already has one
+    // (home, standards-search, standards-detail, verification-history
+    // all do, just with no click handler) instead of adding a second,
+    // redundant toggle. Its own responsive classes already show/hide
+    // it at the right breakpoint, so no extra visibility logic needed.
+    let reusedExisting = false;
+    Array.prototype.forEach.call(document.querySelectorAll('button, a'), function (control) {
+      const icon = control.querySelector('.material-symbols-outlined, [data-icon]');
+      const iconText = icon ? icon.textContent.trim() : '';
+      if (iconText === 'menu') {
+        reusedExisting = true;
+        control.addEventListener('click', function (event) {
+          event.preventDefault();
+          event.stopPropagation();
+          openMenu();
+        });
+      }
+    });
+
+    // No existing hamburger anywhere on the page (most screens: verify,
+    // ask-ai, complaint, laboratory-finder, evidence-viewer, grievances,
+    // certification-roadmap, msme-dashboard, research-dashboard,
+    // settings) -- add a floating toggle, and only show it once we've
+    // confirmed the page's own CSS is actually hiding the real nav
+    // right now, so it doesn't sit on top of a desktop layout that
+    // already shows everything.
+    if (!reusedExisting) {
+      const fab = document.createElement('button');
+      fab.type = 'button';
+      fab.className = 'manakai-mobile-nav-fab';
+      fab.setAttribute('aria-label', 'Open menu');
+      fab.innerHTML = '<span class="material-symbols-outlined">menu</span>';
+      fab.addEventListener('click', openMenu);
+      document.body.appendChild(fab);
+
+      function syncFabVisibility() {
+        const stillHidden = topLevel.some(function (node) {
+          return window.getComputedStyle(node).display === 'none';
+        });
+        fab.style.display = stillHidden ? 'flex' : 'none';
+      }
+      syncFabVisibility();
+      let resizeTimer;
+      window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(syncFabVisibility, 100);
+      });
+    }
+  }
+
+  buildMobileNav();
 
   document.addEventListener('click', function (event) {
     const link = event.target.closest('a, button');
