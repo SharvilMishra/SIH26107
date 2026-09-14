@@ -339,7 +339,12 @@
     // it at the right breakpoint, so no extra visibility logic needed.
     let reusedExisting = false;
     Array.prototype.forEach.call(document.querySelectorAll('button, a'), function (control) {
-      const icon = control.querySelector('.material-symbols-outlined, [data-icon]');
+      // The icon can be the control itself (e.g. settings.html's button
+      // carries the icon class directly, no nested span) or a descendant
+      // (e.g. home.html wraps it in <span class="material-symbols-outlined">) --
+      // check both, since querySelector alone only ever finds the latter.
+      const iconSelector = '.material-symbols-outlined, [data-icon]';
+      const icon = control.matches(iconSelector) ? control : control.querySelector(iconSelector);
       const iconText = icon ? icon.textContent.trim() : '';
       if (iconText === 'menu') {
         reusedExisting = true;
