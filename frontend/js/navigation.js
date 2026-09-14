@@ -359,11 +359,27 @@
     // No existing hamburger anywhere on the page (most screens: verify,
     // ask-ai, complaint, laboratory-finder, evidence-viewer, grievances,
     // certification-roadmap, msme-dashboard, research-dashboard,
-    // settings) -- add a floating toggle, and only show it once we've
-    // confirmed the page's own CSS is actually hiding the real nav
-    // right now, so it doesn't sit on top of a desktop layout that
-    // already shows everything.
+    // settings) -- add a floating toggle. Its visibility is driven by a
+    // plain CSS media query (see below), not a runtime getComputedStyle
+    // check: Tailwind's CDN script compiles "hidden"/"md:flex" etc.
+    // asynchronously, so checking computed style at load time is a race
+    // -- it can run before Tailwind has injected that CSS and wrongly
+    // conclude nothing is hidden, permanently disabling the button.
     if (!reusedExisting) {
+      const BREAKPOINT_PX = { sm: 640, md: 768, lg: 1024, xl: 1280 };
+      let maxBreakpoint = 0;
+      topLevel.forEach(function (node) {
+        Array.prototype.forEach.call(node.classList, function (token) {
+          const m = token.match(/^(sm|md|lg|xl):(flex|inline-flex|block|grid)$/);
+          if (m && BREAKPOINT_PX[m[1]] > maxBreakpoint) maxBreakpoint = BREAKPOINT_PX[m[1]];
+        });
+      });
+      if (maxBreakpoint > 0) {
+        const rule = document.createElement('style');
+        rule.textContent = '@media (min-width:' + maxBreakpoint + 'px) { .manakai-mobile-nav-fab { display: none !important; } }';
+        document.head.appendChild(rule);
+      }
+
       const fab = document.createElement('button');
       fab.type = 'button';
       fab.className = 'manakai-mobile-nav-fab';
@@ -371,19 +387,6 @@
       fab.innerHTML = '<span class="material-symbols-outlined">menu</span>';
       fab.addEventListener('click', openMenu);
       document.body.appendChild(fab);
-
-      function syncFabVisibility() {
-        const stillHidden = topLevel.some(function (node) {
-          return window.getComputedStyle(node).display === 'none';
-        });
-        fab.style.display = stillHidden ? 'flex' : 'none';
-      }
-      syncFabVisibility();
-      let resizeTimer;
-      window.addEventListener('resize', function () {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(syncFabVisibility, 100);
-      });
     }
   }
 
